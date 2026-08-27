@@ -7,10 +7,10 @@ The paper proposes a **threshold-collapse rule** for quantum mechanics: a branch
 ## Main results
 
 - **Threshold:** \(\varepsilon \approx 3 \times 10^{-121}\); effective branch cap \(N_* \approx \log_2 I_{\mathrm{ost}} \approx 400\).
-- **Experiment:** local marginal test on one **403-qubit** processor — \(Z\)- vs \(X\)-control shifts \(P(A{=}1)\) while the \(X\) arm stays at \(1/2\).
-- **Superluminal telephone (§10):** after confirming the local test, the same scheme on a separated base; **direct controlled-\(U\)** at **\(N=402\)** ancillas (\(M \approx 7\) acts, \(d_{\mathrm{sat}} \approx 20\) layers, \(t_{\mathrm{run}} \approx 0.5\) µs per act): **\(\approx 280\) kbit/s**, minimum base **\(\approx 1.05\) km**.
-- **Duplex:** symmetric **403-qubit** stations; each act consumes the Bell pair — fresh entanglement per bit; **either transmit or receive** on one pair; alternating ticks on the comoving layer, not simultaneous.
-- **Engineering (§12):** offline \(U|0\rangle\) preparation with controlled-SWAP could reach **\(\approx 2.8\) Mbit/s** at **\(\approx 100\) m** if compatible with the nonlinear collapse rule; open questions on buffer prep, pair refresh, and synchronization.
+- **Experiment:** local marginal test on one **404-qubit** processor ($402$ ancillas) — \(Z\)- vs \(X\)-control shifts \(P(A{=}1)\) to \(\approx 1.6\%\) while the \(X\) arm stays at \(1/2\).
+- **Superluminal telephone (§10):** after confirming the local test, the same **404-qubit** scheme on a separated base; **direct controlled-\(U\)** at **\(N=402\)** ancillas (\(M \approx 7\) acts, \(d_{\mathrm{sat}} \approx 20\) layers, \(t_{\mathrm{run}} \approx 0.5\) µs per act): **\(\approx 280\) kbit/s** if Bell-pair supply keeps up (**\(R_{\mathrm{Bell}} \approx 2\times10^6\)** pairs/s per direction), minimum base **\(\approx 1.05\) km**.
+- **Duplex:** symmetric **404-qubit** stations ($402$ ancillas each); each act consumes the Bell pair — **\(R_{\mathrm{Bell}} \approx 2\times10^6\)** pairs/s per active tick; **either transmit or receive** on one pair; alternating ticks on the comoving layer, not simultaneous.
+- **Engineering (§12):** Bell-pair throughput is the main bottleneck; offline \(U|0\rangle\) + controlled-SWAP could reach **\(\approx 2.8\) Mbit/s** at **\(\approx 100\) m** but needs **\(\approx 2\times10^7\)** pairs/s and may be blocked by the precomputation penalty (§8).
 - **Comoving layer (§11):** collapse simultaneity on constant FRW time, practically the CMB rest frame; computational synchronization for Earth/space stations.
 
 ## Structure
