@@ -1,6 +1,6 @@
 # Build PDF (pdflatex + bibtex)
 param(
-    [string[]]$Targets = @("collapse_threshold_ru")
+    [string[]]$Targets = @("collapse_threshold_ru", "collapse_threshold_en")
 )
 $ErrorActionPreference = "Stop"
 Set-Location $PSScriptRoot

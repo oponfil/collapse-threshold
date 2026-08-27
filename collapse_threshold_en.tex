@@ -1,0 +1,510 @@
+% !TEX root = collapse_threshold_en.tex
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage[T1]{fontenc}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage[hidelinks]{hyperref}
+\usepackage{indentfirst}
+
+\DeclareMathOperator{\Tr}{Tr}
+
+% I_ost: leftover orthogonal operations of the causal patch (Landauer/Lloyd; not a qubit count)
+\newcommand{\Ost}{I_{\mathrm{ost}}}
+\newcommand{\Keff}{K_{\mathrm{eff}}}
+\newcommand{\Ncl}{N_{\mathrm{cl}}}
+\newcommand{\CollapseRule}{Collapse Threshold Rule}
+\newcommand{\CollapseRuleG}{Collapse Threshold Rules}
+\newcommand{\CollapseRuleD}{the Collapse Threshold Rule}
+\newcommand{\CollapseRulePr}{Collapse Threshold Rule}
+\newcommand{\CollapseRuleI}{the Collapse Threshold Rule}
+
+\title{\textbf{Collapse Threshold from a Computational Limit}}
+\author{%
+  Oleg Ponfilenok\\[0.35em]%
+  {\normalsize Independent researcher}\\[0.2em]%
+  {\normalsize Corresponding author: \href{mailto:ponfil@gmail.com}{ponfil@gmail.com}}%
+}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We propose a modernization of quantum mechanics through the introduction of the \CollapseRule{}: a branch or coherence is removed if it cannot be distinguished experimentally from absence. The classical outcome becomes objective rather than a virtual interpretation of decoherence. The threshold is derived from the finite number of binary distinctions within a causal patch~--- $3{,}5\times 10^{120}$. The scale of equiprobable branching and the RCS limit are about $400$ qubits. The model forbids factorization of RSA-1024. The non-unitarity of the collapse act permits non-conservation of energy as well as superluminal information transfer. An experimental test on a single $404$-qubit processor is proposed.
+\end{abstract}
+
+\noindent\textbf{Keywords:} objective collapse; operationalism; branch removal; einselection; computational limit; Shor's algorithm; superluminal telephone; CMB frame
+
+\vspace{1em}
+
+\section{Introduction}
+
+Standard quantum mechanics permits unitary decoherence: the reduced entropy of a subsystem grows, global entropy equals zero, the phase is recorded in correlations with the environment and is recoverable (Loschmidt echo~\cite{swingle2018}). The classical bit is thereby not born \emph{objectively}---interpretation remains virtual.
+
+In standard decoherence theory the environment acts as a continuous measurer: interaction records information about the system and through einselection selects a stable basis of observable states~\cite{zurek2003,zurek2009}. A laboratory apparatus is a controlled special case of this process, while scattering, collisions, and natural radiation play the same role in nature. In quantum Darwinism, objectivity arises when information about the system state is multiply reproduced in independent fragments of the environment~\cite{zurek2009}; this picture develops Wheeler's ``It from Bit'' idea linking physical reality to information~\cite{wheeler1989}. Binary distinction here is understood in Wheeler's sense---a yes/no answer to a posed question, i.e.\ an act rather than a stored record. The task of this work is the finiteness of such distinctions within a causal patch and the consequences for admissible description of physical state.
+
+Meanwhile standard theory does not set a minimal nonzero value for density-matrix elements and probability weights. Decoherence can decrease coherences without bound, and sequential branching and spatial tails of the wave function create arbitrarily small nonzero weights.
+
+If such quantities are treated as independently distinguishable physical data and stored with fixed absolute resolution, the required bit depth for exponential decay grows linearly with time or distance, and for a Gaussian tail quadratically with distance. Without a lower threshold it is unbounded and, given sufficiently long evolution, exceeds any finite information limit of the region, in particular the Bekenstein holographic bound~\cite{bousso2002}. Mathematically arbitrarily small coefficients are admissible, but their physical storage and distinction at finite information capacity is impossible. Hence arises the idea of an information threshold below which values are physically indistinguishable.
+
+Ideas of finite precision and threshold were discussed earlier. Buniy, Hsu, and Zee linked the finiteness of distinguishable states to discreteness of Hilbert space and quantization of its coefficients~\cite{buniy2005}, then allowed exclusion of wave-function components with norm below a discreteness threshold to eliminate ``maverick branches'' and restore Born's rule~\cite{buniy2006}. This threshold was not fixed: it depended on characteristic energy or system size and number of subsystems. Del Santo and Gisin introduced finite informational precision of physical quantities and discussed collapse-like actualization of undefined digits, but in the context of classical indeterminism rather than quantum branch weights~\cite{delsanto2019}. In another context Harlow and Hayden showed that quantum gedanken experiments with black holes may be computationally inaccessible within available time~\cite{harlow2013}.
+
+Information that can be obtained and verified experimentally is finite in two independent senses. The first limit is set by quantum uncertainty: incompatible physical quantities cannot be measured simultaneously with arbitrarily high precision. The second is tied to finiteness of the causal patch---the maximal causally closed region accessible to one observer. Its cosmological budget~$\Ost$ permits only a finite number of operations over the entire future of that region~\cite{lloyd2000,lloyd2002,banks2001}. Therefore infinite information is inaccessible neither by measurement precision nor by the number of physical operations with which it can be obtained.
+
+The new proposal of this work is the \CollapseRule{}, implementing the postulate of limited description: within a causal patch no more than $\Ost$ binary distinctions are executable, whence follows the absolute threshold of experimental distinguishability $\varepsilon=1/\Ost$. The diagonal element $p_i=\rho_{ii}=|c_i|^2$ is already a probability, whereas the interference contribution is of order~$|\rho_{ij}|$. Therefore the \CollapseRule{} applies to one branch or one coherence in the einselection basis: an object is removed if it cannot be distinguished experimentally from absence. It does not apply to an independent matrix cell outside such an object. The threshold $\varepsilon$ sets the resolution limit of the entire region and is not divided among individual carriers as a quota. First a mnemonic estimate of the threshold from causal-patch memory capacity is given, then it is rejected in favor of counting executable distinctions; the rule acts on the full density matrix of an entangled system with global renormalization (\hyperref[sec:rules]{\S~\ref*{sec:rules}}).
+
+\section{Holographic Estimate of the Threshold}
+\label{sec:holographic}
+
+Consider a thought experiment: at the center---an atom emitting a photon of wavelength~$\lambda$. The photon departs in all directions at once: a spherical superposition of directions, without slits. Around it---a spherical screen of radius~$R$ with detectors over the entire surface. The number of distinguishable detection outcomes is the sphere area divided by cell area~$\lambda^2$ (as the number of microstates):
+\begin{equation}
+N_{\mathrm{cell}}(R,\lambda) \;=\; \frac{4\pi R^2}{\lambda^2}.
+\end{equation}
+Each cell is one individual outcome ``photon detected here.'' In the cell basis the diagonal of the reduced~$\rho$ gives probabilities of these outcomes; off-diagonal elements give coherence between directions. Count only outcomes: how many diagonal addresses the sphere has.
+
+\textbf{Limiting sphere.} The maximal radius is the de~Sitter horizon~$R_{\mathrm{dS}}$, to which the cosmological event horizon asymptotically tends in the future; the minimal wavelength is the thermal length at Planck temperature~$T_P$:
+\begin{equation}
+R_{\max} \;=\; R_{\mathrm{dS}}, \qquad
+\lambda_{\min} \;=\; \frac{\hbar c}{k_B T_P} \;=\; \ell_P,
+\end{equation}
+where $\ell_P=\sqrt{\hbar G/c^3}$ is the Planck length. The area of the limiting sphere equals $A_{\mathrm{dS}}=4\pi R_{\mathrm{dS}}^2$. Therefore at resolution area~$\ell_P^2$ the number of binary cells on it is
+\begin{equation}
+N_{\mathrm{cell,max}}
+\;=\; \frac{A_{\mathrm{dS}}}{\ell_P^2}
+\;=\; \frac{4\pi R_{\mathrm{dS}}^2}{\ell_P^2}
+\;\approx\; 1{,}3\times 10^{123},
+\end{equation}
+Assigning one binary detection fact ``yes'' or ``no'' to each cell corresponds to $1{,}3\times 10^{123}$~bits. The resulting quantity is of the order of holographic capacity~\cite{bousso2002}: de~Sitter entropy~\cite{gibbonshawking1977}, expressed in bits, equals
+\begin{equation}
+\frac{S_{\mathrm{dS}}}{\ln 2}
+\;=\; \frac{A_{\mathrm{dS}}}{4\ell_P^2\ln 2}
+\;=\; \frac{N_{\mathrm{cell,max}}}{4\ln 2}
+\;\approx\; 4{,}8\times 10^{122}\ \text{bits}.
+\end{equation}
+Here $S_{\mathrm{dS}}$ denotes dimensionless entropy in nats. The two estimates differ only by the factor~$4\ln 2$. The cells form an einselection basis in which the entire reduced~$\rho$ lives. The quantity~$N_{\mathrm{cell,max}}$ estimates \emph{memory capacity} of the causal patch: how many binary facts can be stored in it. This estimate will be rejected in \hyperref[sec:computational]{\S~\ref*{sec:computational}} in favor of a different count---the number of \emph{executable} binary distinctions~$\Ost$. Before that transition it is useful to remember the order of magnitude $1/N_{\mathrm{cell,max}}\sim 10^{-123}$ as a mnemonic scale, but not as the working threshold of the model.
+
+\section{Cosmological Computational Limit}
+\label{sec:cosmological-limit}
+
+The calculation is carried out in the flat $\Lambda$CDM model: FRW metric with $\Omega_k=0$, $\Omega_m+\Omega_\Lambda+\Omega_r=1$; the radiation contribution in the present epoch is negligible ($\Omega_r<0{,}01\%$).
+
+Take the Hubble horizon $R=c/H$ and Friedmann's second equation for energy density~$\rho$ and pressure~$p$
+\begin{equation}
+\dot H = -\frac{4\pi G}{c^2}(\rho+p).
+\end{equation}
+Horizon growth rate:
+\begin{equation}
+\frac{dR}{dt}
+= -c\,\frac{\dot H}{H^2}
+= \frac{4\pi G}{c^3}(\rho+p)\,R^2.
+\end{equation}
+Then $\rho=\rho_m+\rho_\Lambda$, $p_m=0$, $p_\Lambda=-\rho_\Lambda$, whence $\rho+p=\rho_m$. Therefore in the adopted approximation entropy change and available operations are determined by non-relativistic matter rest energy; the dark-energy contribution vanishes because $\rho_\Lambda+p_\Lambda=0$. For a flat universe $\rho_m=\Omega_m\cdot 3c^4/(8\pi G R^2)$, and
+\begin{equation}
+\frac{dR}{dt} = \frac{3}{2}\,c\,\Omega_m.
+\end{equation}
+
+Horizon entropy $S=\pi k R^2/\ell_P^2$:
+\begin{equation}
+\frac{dS}{dt}
+= \frac{2\pi k R}{\ell_P^2}\frac{dR}{dt}
+= \frac{3\pi k c^4}{\hbar G}\,\Omega_m R.
+\end{equation}
+Matter energy inside the horizon $E_m=c^4\Omega_m R/(2G)$. Lloyd's limit~\cite{lloyd2000,lloyd2002}
+\begin{equation}
+\dot N_m = \frac{2E_m}{\pi\hbar} = \frac{c^4\Omega_m R}{\pi\hbar G}.
+\end{equation}
+Dark energy produces no entropy ($\rho_\Lambda+p_\Lambda=0$). The ratio
+\begin{equation}
+\frac{\dot S}{k\,\dot N_m} = 3\pi^2
+\end{equation}
+--- $3\pi^2$~nats (about $42{,}7$~bits) per orthogonal matter operation. $\Omega_m$ and~$R$ cancel: the relation is holographic and epoch-independent while matter and~$\Lambda$ dominate.
+
+de~Sitter entropy is finite; its value is given above (\hyperref[sec:holographic]{\S~\ref*{sec:holographic}}). The identity $S_{\mathrm{dS}}-S=S_{\mathrm{dS}}\Omega_m$ is exact: $R_H^2=R_{\mathrm{dS}}^2\Omega_\Lambda$ for a flat universe without radiation. Remaining orthogonal operations
+\begin{equation}
+\Ost(t)
+= \int_t^\infty \dot N_m\,dt'
+= \frac{S_{\mathrm{dS}}-S}{3\pi^2}
+= \frac{S_{\mathrm{dS}}\Omega_m}{3\pi^2}
+\approx 3{,}5\times 10^{120}
+\end{equation}
+The value for the present epoch is given here. The integral is finite because the horizon asymptotically tends to~$R_{\mathrm{dS}}$. In homogeneous Friedmann--Robertson--Walker (FRW) cosmology the quantity~$\Ost(t)$ is the same for comoving observers at one cosmological time.
+
+As~$\Omega_m$ decreases, $\Ost(t)$ decreases: at recombination $\Ost\approx 1{,}1\times 10^{121}$, now $\Ost\approx 3{,}5\times 10^{120}$, and in the asymptotic future $\Ost(t)\to 0$. At laboratory timescales the change in~$\Omega_m$ can be neglected.
+
+\section{Computational Estimate of the Threshold}
+\label{sec:computational}
+
+The quantities in \hyperref[sec:holographic]{\S~\ref*{sec:holographic}} and \hyperref[sec:cosmological-limit]{\S~\ref*{sec:cosmological-limit}} measure different things. $N_{\mathrm{cell,max}}$ is region memory capacity: how many binary facts fit in it. $\Ost$ is the number of orthogonal operations: how many binary distinctions are executable in it. The ratio $12\pi^2/\Omega_m\approx376$ is the difference between two counts, not a correction to one. Hereafter the second is adopted: physically a branch exists insofar as it can be distinguished from absence, not insofar as it can be stored.
+
+Matching the operation remainder to the number of binary cells on the limiting sphere, we obtain
+\[
+\frac{N_{\mathrm{cell,max}}}{\Ost}
+=\frac{12\pi^2}{\Omega_m}
+\sim 4\times 10^2.
+\]
+Therefore the mnemonic scale $1/N_{\mathrm{cell,max}}\sim 10^{-123}$ overestimates resolvability: memory is still sufficient, but operations to distinguish all addresses are lacking. On a logarithmic scale the same factor lowers the recorded limit from $\log_2 N_{\mathrm{cell,max}}\approx 409$ to $N_*=\log_2\Ost\approx 400{,}4$, i.e.\ by about $8{,}6$ qubits. Working resolution is limited by the number of executable distinctions, not memory capacity.
+
+The quantity~$\Ost$ is not a consumable quota distributed among devices, but the total measurement budget of the causal patch. The operational meaning of~$\varepsilon$ is that over~$\Ost$ measurements one can accumulate a distinguishable signal of order unity; per operation
+\begin{equation}
+\varepsilon = \frac{1}{\Ost}\approx 3\times 10^{-121}.
+\end{equation}
+If an einselection object's contribution to this total signal is weaker than~$\varepsilon$, no protocol within the patch distinguishes it. In the \CollapseRulePr{}~(\hyperref[sec:rules]{\S~\ref*{sec:rules}}) this budget is realized for one branch or one coherence; trace distance~\cite{watrous2018} describes the shift of outcome distribution in one measurement, but the threshold is set by accumulated statistics over~$\Ost$ operations. Therefore~$\varepsilon$ characterizes the resolving power of the entire region, has the same value for every entangled system, and does not grow with the number of devices. It is a property of the causal patch, not the laboratory apparatus: the local environment determines which branches and coherences are tested, but not the value of~$\varepsilon$.
+
+\section{\CollapseRule}
+\label{sec:rules}
+
+Within a causal patch no more than $\Ost$ binary distinctions are executable (\hyperref[sec:cosmological-limit]{\S~\ref*{sec:cosmological-limit}}). We put forward the hypothesis and propose the postulate that a description of physical state cannot contain more independently distinguishable elements than there are distinctions in the budget. A branch or coherence of an einselection object to which no distinction is allocated is physically indistinguishable from absence and is removed---a branch by projection onto the sector complement, coherence by dephasing.
+
+We introduce an integer micromodel specifying nonnegative integers $n_i\in\mathbb{Z}_{\ge 0}$, $\sum_i n_i=\Ost$; weights live on the grid $n_i/\Ost$. Between zero and $\varepsilon=1/\Ost$ there is no admissible value, so excess is removed by deletion rather than coarse-graining all weights. The full dynamical model is discussed in \hyperref[sec:discussion]{\S~\ref*{sec:discussion}}.
+
+The \CollapseRule{} implements this postulate for einselection objects within a causal patch with resolving power~$\varepsilon$. By ``description'' we mean the operational content of state---Born weights of branches and subsystem correlations accessible from measurement statistics (\hyperref[sec:computational]{\S~\ref*{sec:computational}})---not the unitary scheme of its preparation. The \CollapseRule{} compares $p_i$ with~$\varepsilon$. The gate count of a random circuit (RCS) of depth $d\sim20$ on $N\approx400$ qubits is of order $Nd/2\sim4000$, i.e.\ polynomial in~$N$; the number of branches is exponential ($2^N$). Both scales are negligible compared with~$\Ost\sim3{,}5\times10^{120}$: a budget attributed to circuit storage would not set a ceiling and would not link~$\Ost$ to~$2^N$, and hence would not yield the prediction $N_*\approx\log_2\Ost\approx400$ (\hyperref[sec:pruning]{\S~\ref*{sec:pruning}}).
+
+A branch is one outcome in the einselection basis with diagonal weight~$p_i=\rho_{ii}$; off-diagonal elements describe interference between branches. Physical interaction with the environment defines orthogonal sectors~$P_i$, not an arbitrary matrix representation. The \CollapseRule{} applies to the entire entangled system within which these records are linked.
+
+The \CollapseRule{} tests one einselection object: one branch or the coherence of that branch with its complement. Let $P_i$ be the sector projector, $p_i=\Tr(P_i\rho)$ the Born weight of the branch. Elementary branch removal and elementary L\"uders dephasing~\cite{luders1950} take the form
+\begin{equation}
+\mathcal C^{\mathrm{del}}_i(\rho)
+=\frac{(I-P_i)\rho(I-P_i)}{\operatorname{Tr}\bigl((I-P_i)\rho\bigr)},
+\qquad
+\mathcal C^{\mathrm{ph}}_i(\rho)
+=P_i\rho P_i+(I-P_i)\rho(I-P_i).
+\end{equation}
+An object is removed if it cannot be distinguished from absence within the budget of~$\Ost$ measurements.
+
+\emph{Recorded branch.} A population protocol counts how many times branch~$i$ occurs in a series of~$\Ost$ independent repetitions. The expected number of hits equals $\Ost p_i$; a distinguishable signal of order unity requires $\Ost p_i\gtrsim1$, whence
+\begin{equation}
+p_i<\varepsilon=\frac1{\Ost}.
+\end{equation}
+
+\emph{Coherent branch.} The same branch may enter superposition with its complement and be tested by interferometry: the signal goes through amplitude~$\sqrt{p_i}$, not frequency~$p_i$. Over~$\Ost$ repetitions of the same interferometric protocol amplitudes add as $\sqrt{\Ost p_i}$; the requirement $\sqrt{\Ost p_i}\gtrsim1$ is equivalent to $\Ost p_i\gtrsim1$ and again yields~$p_i<\varepsilon$. Interferometry is more sensitive in a single measurement---in this sense trace distance to~$\mathcal C_i(\rho)$ is of order~$\sqrt{p_i}$, not~$p_i$~\cite{watrous2018}---but no second operation budget is allocated: each repetition consumes the same unit from~$\Ost$. Therefore the condition~$p_i<\varepsilon^2$ that would follow from a single measurement ($\sqrt{p_i}<\varepsilon$) applies only to a protocol without statistical accumulation; with the full causal-patch budget both cases reduce to one invisibility condition~$p_i<\varepsilon$. Recorded and coherent modes differ by measurement protocol and rate of signal accumulation per operation, but not by the value of~$\varepsilon$ or the logarithmic branching ceiling.
+
+Physically distinguishable objects are measurement outcomes: branch probabilities and interference between them, recoverable from experiment statistics, including quantum tomography. The density matrix is only a description of this operationally accessible information, not an independent physical object; the observed state is a branch. The \CollapseRule{} is deliberately applied to individual branches, not to distinguishability of the full description: otherwise any joint removal of invisible branches would be forbidden as soon as their total weight becomes observable, and the model would add no new predictions, remaining in principle unfalsifiable. Therefore the \CollapseRule{} cuts off einselection objects indistinguishable by outcome statistics and does not require a small change of the entire~$\rho$ in coordinate representation: joint removal of many invisible branches and coherences can change the matrix by order unity, although each such branch or coherence individually is experimentally indistinguishable.
+
+After identifying
+\begin{equation}
+S=\bigl\{i:\ p_i<\varepsilon\bigr\}
+\end{equation}
+invisible sectors are removed and the remainder is renormalized if its weight is positive. Renormalization covers all surviving branches of the entire entangled system. Independent cutoff of matrix cells by~$|\rho_{ij}|<\varepsilon$ is not applied: it may violate positivity~\cite{hornjohnson2013}, and visible interference of one sector pair may sum from many cells within blocks.
+
+\paragraph{Global renormalization.}
+Let $Q=I-\sum_{i\in S}P_i$ be the projector onto the surviving part of the state. Then the \CollapseRule{} acts on the full density matrix of the entangled system in one step:
+\begin{equation}
+\mathcal{N}(\rho)
+=\frac{Q\rho Q}{\operatorname{Tr}(Q\rho Q)}.
+\end{equation}
+The threshold is compared with the absolute Born weight $p_i=\Tr(P_i\rho)$ of each global einselection branch; the result is determined by a single~$\rho$ and fixed partition~$\{P_i\}$ set by the environment. The rule is \emph{assumed} imposed during unitary circuit evolution as weights grow with entanglement; final readout merely registers the already altered state. If~$A$ is entangled with~$B$, branch removal changes marginal probabilities of both subsystems. Numerical estimates in \hyperref[sec:pruning]{\S~\ref*{sec:pruning}}, \hyperref[sec:experiment]{\S~\ref*{sec:experiment}}, and \hyperref[sec:signaling]{\S~\ref*{sec:signaling}} are obtained for one-time cutoff of an already formed weight distribution; full layer-by-layer dynamics ``gate~$\to$~threshold~$\to$~renormalization'' is not yet specified (\hyperref[sec:discussion]{\S~\ref*{sec:discussion}}).
+
+Removing the corresponding rows and columns leaves the principal submatrix of a positive semidefinite matrix~$\rho$, and L\"uders dephasing is completely positive. Therefore Hermiticity, positivity, and normalization are preserved~\cite{hornjohnson2013,luders1950}.
+
+For $K$ equiprobable alternatives each weight equals $1/K$. Since both population and interferometric protocols require $p_i\ge\varepsilon$ for visibility, the condition~$p_i<\varepsilon$ yields the same ceiling
+\begin{equation}
+K\lesssim\Ost,
+\qquad
+N_*\approx\log_2\Ost\approx400{,}4.
+\end{equation}
+In further estimates it is convenient to use the round reference value~$400$.
+This estimate refers to one equiprobable alternative within one connected system, not to a factorized product or sequential classical recording.
+
+\paragraph{Factorized branching.}
+\label{sec:factorized}
+Additivity example: for $|+\rangle^{\otimes400}$---$400$ factors of~$2$, sum~$800$; for GHZ---$\Keff=2$; for a scrambled state---$\Keff\approx2^{N-1}$. In the first case branch removal does not arise because each factor carries weight $1/2\gg\varepsilon$, not because string $|s\rangle$ has probability $2^{-N}$. In the second case all $400$ qubits are entangled, but the global state is a superposition of only two strings, $|0\ldots0\rangle$ and $|1\ldots1\rangle$, each with weight $1/2$; therefore $\Keff=2$, not $2^{400}$, and additive sum over qubits does not apply. Branch removal again does not arise because both live branches carry weight $1/2\gg\varepsilon$. In the third case the distribution is nearly uniform over $2^N$ pointer-basis strings: typical weight of one string $p_i\sim2^{-N}$, but simultaneously $\Keff\approx2^{N-1}$ branches are distinguishable. At $N\gtrsim400$ this exceeds $\Ost$, and the \CollapseRule{} removes almost all strings with $p_i<\varepsilon$; it is here that the ceiling $N_*\approx400$ applies, not in factorized $|+\rangle^{\otimes N}$ nor in GHZ with two equal branches. Separately there acts the sequential classical recording constraint: recording each bit requires at least one operation, therefore recording length $L\le\Ost$.
+
+\paragraph{Effective number of branches.}
+We define the effective number of branches of an entangled system via the inverse participation ratio (IPR)~\cite{thouless1974,grobe1994}:
+\begin{equation}
+\Keff \;=\; \frac{1}{\sum_i p_i^2}.
+\end{equation}
+For an equiprobable distribution over~$K$ branches we have $\Keff=K$, and the ceiling below may saturate. For a Haar state in dimension~$D=2^N$ the situation is different:
+\begin{equation}
+\mathbb E\!\left[\sum_i p_i^2\right]=\frac{2}{D+1},
+\qquad
+\Keff\approx\frac{D+1}{2}\approx2^{N-1}.
+\end{equation}
+The last equality uses IPR concentration at large~$D$; in general the mean of the inverse is not the inverse of the mean.
+After removing branches with~$p_i<\varepsilon$ surviving weights satisfy $p_i\ge\varepsilon$ and $\Keff\le\Ost$. If $\rho=\bigotimes_a\rho_a$, the number of independently distinguishable elements equals $\sum_a \Keff(\rho_a)$; for non-factorizable $\rho$---$\Keff(\rho)$. Condition: $\sum_a \Keff(\rho_a)\le\Ost$. Hence
+\begin{equation}
+\log_2\Keff\le N_*\approx400{,}4.
+\end{equation}
+As coupling between initially independent systems strengthens, the spectrum of reduced~$\rho$ and~$\Keff$ change continuously; at zero coupling the \CollapseRule{} applies to each system separately.
+
+Discreteness permits a frequency justification of Born's rule in the spirit of Buniy, Hsu, and Zee~\cite{buniy2006}. In a series of~$N$ identical measurements, sequences with one outcome frequency~$f$ form a class with common binomial weight; classes for which $f$ differs noticeably from $p=|c|^2$ have rapidly decreasing total norm and are called maverick branches. Physical partitioning is determined by environment recording: if it preserves only frequency or a ``typical/atypical sequence'' flag, not the full order of outcomes, such a class is one coarse-grained branch. The \CollapseRule{} removes an atypical class when its total weight falls below~$\varepsilon$, so that in all remaining records one observes $f\approx p$. However this yields only frequency typicality: equality $p=|c|^2$ is already used when computing class weight. Subsequent amplification and redundant environment recording in the sense of quantum Darwinism propagate the collapse result but do not constitute a new fundamental transition.
+
+\paragraph{Irreversibility of removal.}
+Since $\Ost(t)$ decreases monotonically, $\dot\varepsilon>0$: the threshold only rises with time. A branch removed at an earlier threshold value remains below it and by \CollapseRuleD{} is not restored. Unitary evolution may subsequently create a branch with the same quantum numbers, but it will be a new branch, not restoration of the removed one.
+
+\paragraph{Degenerate case.}
+In ordinary application all invisible objects from~$S$ are removed and the surviving remainder is renormalized. A problem arises if \emph{all} branches of the state are invisible: then their joint removal would zero~$\rho$ and renormalization would become impossible. With a Porter--Thomas distribution this does not occur---not all branches cross the threshold~$p_i<\varepsilon$ simultaneously; but with a flat distribution it does, and this edge determines the fate of Shor's algorithm (\hyperref[sec:pruning]{\S~\ref*{sec:pruning}}). We supplement the \CollapseRule{} on it: if all branches are invisible, we preserve one branch~$i\in S$ with conditional Born probability
+\begin{equation}
+\Pr(i\mid S)=\frac{p_i}{\sum_{k\in S}p_k},
+\end{equation}
+and remove the remaining branches from~$S$. The probability to preserve branch~$i$ is determined by its weight~$p_i$, not arbitrary choice by index in the basis. Frequency justification of Born's rule in the spirit of Buniy, Hsu, and Zee~\cite{buniy2006} yields only frequency typicality and does not derive this conditional distribution; on this edge it remains an independent prescription of the model. In RCS estimates and the local marginal test this supplement is not used; in the Shor algorithm limit it is essential.
+
+\section{Spatial and Temporal Scales of the Threshold}
+\label{sec:scales}
+
+\paragraph{Spatial tail of the $1s$ state.}
+For a Coulomb $1s$ state the integral weight outside radius~$r$ equals
+\begin{equation}
+w(r)=e^{-2x}(1+2x+2x^2),\qquad x=r/a_0.
+\end{equation}
+The quantity~$w$ is the Born probability to find the electron outside a sphere of radius~$r$ in a position measurement. However before such a measurement the state has the form
+\begin{equation}
+|\psi\rangle=\sqrt{1-w}\,|\mathrm{in}\rangle
++\sqrt w\,|\mathrm{out}\rangle .
+\end{equation}
+Removing the outer tail changes the positional outcome probability by~$w$. In a coherent state, interferometry over~$\Ost$ repetitions distinguishes amplitude~$\sqrt w$ when $\Ost w\gtrsim1$, i.e.\ at the same~$w\gtrsim\varepsilon$. Therefore for both coherent and already recorded tails the \CollapseRule{} requires~$w<\varepsilon$; this gives $r\gtrsim7{,}6$~nm.
+
+The condition~$w<\varepsilon$ for a recorded tail arises after irreversible fixation of ``inside'' and ``outside'' alternatives in the environment---for example at localized detector firing, scattering, or collision. Then interference between sectors has already vanished, but the threshold remains the same. Computing the integral~$w(r)$ or choosing a coordinate basis is not recording itself. Both estimates refer to a physically distinguished integral sector, not an arbitrary coordinate cell.
+
+\paragraph{Tunneling.}
+Similarly for tunneling: the weight of the branch ``particle passed the barrier'' in one attempt is of order $p\sim e^{-2G}$, where $G$ is the Gamow exponent. The condition $p<\varepsilon$ gives $2G>\ln\Ost\approx278$. At typical attempt frequency $\nu\sim10^{21}\,\text{s}^{-1}$ the half-life $\tau_{1/2}\approx e^{2G}/\nu\approx \Ost/\nu$, i.e.\ $\tau\gtrsim10^{92}$~years---regardless of whether the channel is recorded by the environment or still coherent: in both cases $p<\varepsilon$ applies. These numbers show the scale of the threshold but do not set a universal collapse time: the moment of application is determined by emergence of the corresponding einselection coarse-graining. The gap with the $^{128}\mathrm{Te}$ record ($\sim10^{24}$~years) is about $68$ orders of magnitude; the prediction is experimentally inaccessible.
+
+\paragraph{Decoherence and time to reach the threshold.}
+The separate estimate below refers to \emph{ordinary} Markovian environment decoherence: before the \CollapseRuleG{} threshold, coherence between an einselection sector and its complement decays exponentially, as in the standard open-system model. Threshold collapse here does not replace decoherence but is superimposed on it after branches are distinguished and their weights can be compared with~$\varepsilon$.
+
+If the environment exponentially suppresses coherence of one einselection sector with its complement,
+\begin{equation}
+D_{\mathrm{coh}}(t)
+=D\bigl(\rho(t),\mathcal C^{\mathrm{ph}}_i(\rho(t))\bigr)
+=D_{\mathrm{coh}}(0)\,e^{-t/\tau_D},
+\end{equation}
+the threshold is crossed after
+\begin{equation}
+t_{\mathrm{thr}}
+=\tau_D\ln\frac{D_{\mathrm{coh}}(0)}{\varepsilon}.
+\end{equation}
+At $D_{\mathrm{coh}}(0)\sim1$ this gives $t_{\mathrm{thr}}\approx\ln\Ost\,\tau_D\approx278\,\tau_D$. For a weak branch $D_{\mathrm{coh}}(0)\approx\sqrt p$, threshold $D_{\mathrm{coh}}=\varepsilon$ occurs at the same~$p<\varepsilon$ after statistical accumulation. This is the time to reach the threshold, not the duration of the non-unitary jump itself. Upon crossing the threshold invisible coherence of the einselection object is removed by dephasing (\hyperref[sec:rules]{\S~\ref*{sec:rules}}), and corresponding inter-sector elements of~$\rho$ are zeroed.
+
+\section{Duration of Collapse and Non-conservation of Energy}
+\label{sec:collapse-duration}
+
+Here we discuss the duration and energetic consequences of the \emph{collapse act itself}---the non-unitary jump in which invisible einselection branches are removed and the remainder renormalized---not the time~$t_{\mathrm{thr}}$ from \hyperref[sec:scales]{\S~\ref*{sec:scales}} over which the environment or statistics bring the system to the threshold. The moment the threshold fires is set by einselection; $t_{\mathrm{coll}}$ is how long the transition between two physical descriptions lasts. Non-conservation of energy is a consequence of the same non-unitary renormalization and is bounded by the scale of~$t_{\mathrm{coll}}$.
+
+Operationally we estimate $t_{\mathrm{coll}}$ as an \emph{upper} bound on act duration and as the time of one tick of amplitude decrease under Markovian decoherence (\hyperref[sec:scales]{\S~\ref*{sec:scales}}): over interval~$\tau_D$ coherence $D_{\mathrm{coh}}$ and inter-branch amplitudes decrease by a factor of~$e$, and the collapse act lasts no longer than one such step. In terms of environment temperature
+\begin{equation}
+\label{eq:coll-time}
+t_{\mathrm{coll}}\lesssim\frac{\hbar}{k_B T}.
+\end{equation}
+Illustratively, at $300\,\mathrm{K}$ the upper bound is $t_{\mathrm{coll}}\sim 25$~fs.
+
+The jump need not preserve unitary norm: before renormalization the total weight of removed branches may differ from unity. For an act of duration~$t_{\mathrm{coll}}$ the uncertainty relation $\Delta E_{\mathrm{unc}}\,t_{\mathrm{coll}}\gtrsim\hbar$ sets a lower bound on energy uncertainty, $\Delta E_{\mathrm{unc}}\gtrsim\hbar/t_{\mathrm{coll}}$. Operationally the act is no longer than one decoherence tick (\hyperref[sec:scales]{\S~\ref*{sec:scales}}), and its uncertainty is of order this minimum: $\Delta E_{\mathrm{unc}}\sim\hbar/t_{\mathrm{coll}}$. If the magnitude of energy non-conservation does not exceed~$\Delta E_{\mathrm{unc}}$, then
+\begin{equation}
+\label{eq:coll-energy}
+|\Delta E|\lesssim\frac{\hbar}{t_{\mathrm{coll}}}.
+\end{equation}
+This is an upper estimate via act uncertainty, not a direct derivation of $\Delta E\,\Delta t\lesssim\hbar$; without asserting that the corresponding energy is necessarily emitted or absorbed by the environment.
+
+\paragraph{Branch-trimming energy.}
+Mean state energy is $\langle H\rangle=\Tr(H\rho)$. After removing invisible sectors $S=\{i:p_i<\varepsilon\}$ we have $\mathcal{N}(\rho)=Q\rho Q/\Tr(Q\rho Q)$, and the energy shift is defined as
+\begin{equation}
+\Delta E=\Tr(H\mathcal{N}(\rho))-\Tr(H\rho).
+\end{equation}
+This is not a new assumption but a consequence of the renormalization rule (\hyperref[sec:rules]{\S~\ref*{sec:rules}}). Let sectors be approximately energy eigensectors, $[H,P_i]\approx0$, and $E_i=\Tr(HP_i\rho P_i)/p_i$ the mean energy of branch~$i$. Then $\Tr(H\rho)=\sum_i p_i E_i\equiv\langle E\rangle$, $\Tr(H\mathcal{N}(\rho))=\langle E\rangle_{\bar S}$ and $\Tr(HQ\rho Q)=\sum_{i\notin S}p_i E_i$, where $\bar S$ is the complement of~$S$. Denoting $W=\sum_{i\in S}p_i$, $\langle E\rangle_S=(\sum_{i\in S}p_i E_i)/W$ and $\langle E\rangle_{\bar S}=(\sum_{i\notin S}p_i E_i)/(1-W)$,
+\begin{equation}
+\label{eq:branch-energy}
+\Delta E=W\bigl(\langle E\rangle_{\bar S}-\langle E\rangle_S\bigr)=\langle E\rangle_{\bar S}-\langle E\rangle.
+\end{equation}
+The shift is finite for any $W<1$ and does not exceed the spread of energies over branches: $|\Delta E|\le W|\langle E\rangle_{\bar S}-\langle E\rangle_S|$. Under partial trimming it can be large if removed and surviving branches systematically differ in~$E_i$. In the degenerate case when all branches are invisible and one is preserved with conditional probability $\Pr(i\mid S)=p_i/\sum_{k\in S}p_k$ (\hyperref[sec:rules]{\S~\ref*{sec:rules}}), mean energy after the act equals $\sum_i p_i E_i=\langle E\rangle$, i.e.\ $\langle\Delta E\rangle=0$ identically---there is no systematic sink or source by construction; in a single act only fluctuations of order ordinary for the system remain. Where energy goes at $W<1$ and whether collapse is compatible with balance remains an open question (\hyperref[sec:discussion]{\S~\ref*{sec:discussion}}).
+
+\section{Threshold Collapse in Quantum Computing}
+\label{sec:pruning}
+
+The quantity $\Keff=1/\sum_i p_i^2$ measures how many einselection branches carry substantial weight (\hyperref[sec:rules]{\S~\ref*{sec:rules}}). For a nearly equiprobable distribution substantial removal is expected as $\Keff$ approaches the ceiling $\Ost$. For a Porter--Thomas distribution~\cite{porter1956,boixo2018} rare tails cross the threshold earlier: at $N=N_*$ already $\Keff\approx2^{N-1}=\Ost/2$, and removed weight is substantial. Therefore the exact RCS front below is determined directly by the weight distribution, not by equality $\Keff=\Ost$.
+
+\paragraph{RCS limit.}
+For random circuit sampling (RCS)~\cite{boixo2018,arute2019} the number of qubits~$N$ and distribution width~$\Keff$ are critical. Let~$N$ be the number of qubits in the circuit and~$W=\sum_{i:\,p_i<\varepsilon}p_i$ the total Born weight of removed branches. The processor computational basis is the pointer-state basis set by qubit definition in interaction with the environment~\cite{zurek2003,zurek2009}; final readout only strengthens and registers the outcome in the same basis, it does not create it. Laboratory isolation suppresses decoherence \emph{between} pointer states and preserves high fidelity, but does not cancel the pointer-state basis. After entangling gates joint strings~$|x\rangle$ are einselection branches of the entire register with weights~$p_x=|\langle x|\psi\rangle|^2$, no longer reducible to a product of independent factors (\hyperref[sec:factorized]{\S~\ref*{sec:factorized}}). The \CollapseRule{} is imposed on these weights as they grow during circuit operation, before readout, thereby making evolution non-unitary; readout fixes the already altered distribution.
+
+The reverse question is whether residual noise pushes part of the qubits into sequential classical recording mode. An error event records which-path information about roughly one qubit in the environment, therefore $\langle k\rangle = N d e_{2q}/2$. At the working point $N\approx400$, $d=40$, $e_{2q}=10^{-4}$ this is $\langle k\rangle\approx0{,}8$---less than one qubit out of four hundred, wall shift within window $N\approx400\pm3$. The window in which the test works by fidelity and the window in which leakage is negligible coincide. (Upper estimate: the coherent component of which-path recording error does not create it.)
+
+For circuits on~$N$ qubits whose output distribution approaches Haar, weights obey the Porter--Thomas distribution: $P(p)=2^N e^{-2^N p}$. Typical minimum weight is of order $p_{\min}\sim 2^{-2N}$. The condition $p<\varepsilon$ touches the first rare tails around $N\approx200$, but their total weight is negligible; a typical branch becomes invisible around $N\approx400$. The result also depends on circuit depth~$d$---the number of sequential two-qubit gate layers: Porter--Thomas distribution for two-dimensional connectivity is established at saturation depth $d_{\mathrm{sat}}\sim\sqrt{N}$, over which the light cone covers the entire chip; at $d\gtrsim d_{\mathrm{sat}}$ typical weights are already Haar, while in smaller circuits branch removal starts later.
+
+Integrating the Porter--Thomas distribution up to threshold~$p_{\mathrm{thr}}$ gives
+\begin{equation}
+W(u)
+\;=\;
+1-(1+u)e^{-u}
+\;\simeq\;
+\frac{u^2}{2},
+\qquad
+u=2^N p_{\mathrm{thr}}.
+\end{equation}
+Threshold $p_{\mathrm{thr}}=\varepsilon$ and $u=2^{N-N_*}$. For a Haar state $u\approx2\Keff/\Ost$, therefore condition $u=1$ corresponds to $\Keff\approx\Ost/2$, not saturation of the formal ceiling. At sensitivity $\delta=10^{-3}$ the effect becomes visible around $N=396$ qubits. At $N\approx400{,}4$ one removes $W=1-2/e\approx26{,}4\%$; at $N=403$ already $W\approx98\%$.
+
+It is important to distinguish removed \emph{mass}~$W$ and the number of surviving \emph{strings}. The fraction of branches with $p_i\ge\varepsilon$ equals $e^{-u}$, whence
+\begin{equation}
+n = D e^{-u} = 2^N \exp\bigl(-2^{N-N_*}\bigr).
+\end{equation}
+The limit $W\to1$ means only that almost all Born mass went into tails below~$\varepsilon$, not that one string remains: at $N=405$ still $n\sim10^{111}$. After global renormalization
+\begin{equation}
+\Keff = \frac{D(1+u)^2 e^{-u}}{u^2+2u+2}.
+\end{equation}
+For the Porter--Thomas distribution the model gives two parameter-free markers: soft trimming front at $N=N_*\approx400{,}4$ ($u=1$) and \emph{classicality}~$\Ncl$ at $n=1$, i.e.\ at
+\begin{equation}
+\Ncl\ln2 = 2^{\Ncl-N_*},
+\qquad
+\Ncl\approx408{,}5
+\end{equation}
+($\Keff\to1$; at $N=401$, $403$, $405$, $408$ we have $\Keff\approx2^{398{,}6}$, $2^{394}$, $2^{370}$, $2^{128}$). The \CollapseRule{} removes all invisible branches even if joint coarse-graining changes the state by order unity.
+
+\paragraph{Shor algorithm limit.}
+Threshold influence is determined not by qubit number per se but by branching width in the pointer-state basis. Partition~$\{P_i\}$ is set by the environment and therefore is the same for the entire register: it is the same computational $Z$-basis as in RCS above. A periodic comb is a coherent superposition of pointer strings, not a pointer state, so it cannot be taken as a separate branch: that would be a representation convenient for the algorithm, not a partition set by interaction with the environment (\hyperref[sec:rules]{\S~\ref*{sec:rules}}). Coarse-graining to combs would require the environment to record the second register and not record the first; meanwhile orthogonality of the second register by itself is not irreversible classical recording.
+
+Consider stages of the standard Shor algorithm~\cite{shor1997}. Let~$m$ be the width of the counting register, $Q=2^m$ and $n$ the module to factor. After Hadamard transforms the first register remains a product of single-qubit states (``coherent product'' mode, \hyperref[sec:factorized]{\S~\ref*{sec:factorized}}), therefore $2^{-m}$ is a product of weights~$1/2$, not the weight of one branch; branch removal does not arise. Modular exponentiation entangles the registers:
+\begin{equation}
+|\psi\rangle=\frac1{\sqrt Q}\sum_{k=0}^{Q-1}|k\rangle\,|a^k\bmod n\rangle,
+\end{equation}
+All~$Q$ pointer-basis strings carry equal weight $p_i=1/Q$. Factorizability of this state in the~$Z$-basis is determined by order~$r$: the quantity $a^k\bmod n$ depends only on $k\bmod r$, therefore exact decomposition into independent factors is possible if and only if $r\mid 2^m$, i.e.\ when $r=2^j$. In this case, setting $k=k_{\mathrm{hi}}\cdot2^j+k_{\mathrm{lo}}$, we obtain $|\psi\rangle=|+\rangle^{\otimes(m-j)}\otimes\frac1{\sqrt r}\sum_{k_{\mathrm{lo}}}|k_{\mathrm{lo}}\rangle|a^{k_{\mathrm{lo}}}\rangle$, and by additivity $\sum_a\Keff(\rho_a)=r+2(m-j)$. At~$j<m$ all weights equal $1/2$ or $1/r$ and remain above~$\varepsilon$ while $r\le\Ost$ (i.e.\ $j\lesssim N_*$); at~$j=m$ the sole weight is $2^{-m}$, and the wall arrives at $m\gtrsim N_*$ as for a flat distribution. While all weights $\ge\varepsilon$, branch removal does not arise. At~$r\ne2^j$ the state is non-factorizable and $\Keff=Q=2^m$ (\hyperref[sec:rules]{\S~\ref*{sec:rules}}). Hereafter we assume $r\ne2^j$. For RSA module $n=pq$ the fraction of bases~$a$ whose order is a power of two is inverse to the odd part of the exponent of group $\mathbb{Z}_n^*$ and is negligibly small; moreover at $r=2^j$ factorization does not require full period finding. Therefore the caveat does not weaken the conclusion about cryptographic modules but is necessary for correctness of the criterion.
+
+The \CollapseRule{} is imposed during the circuit, not only on this final state. Modular exponentiation is implemented by sequential controlled-$U$ on one control at a time; after~$t$ steps $\rho=\rho_{t+\mathrm{target}}\otimes|+\rangle^{\otimes(m-t)}$, and by additivity $\sum_a\Keff(\rho_a)=2^t+2(m-t)$. At~$r\ne2^j$ the entangled block carries $2^t$ equal branches of weight~$2^{-t}$; unprocessed controls in~$|+\rangle$ are not yet touched (at~$r=2^j$ the block itself splits into $|+\rangle^{\otimes(t-j)}$ and an $r$-string part after $t>j$ steps, and the estimate below does not apply)---global weight~$2^{-m}$ is not used here since the state is factorized. At~$t>N_*\approx400{,}4$ all block branches are below~$\varepsilon$, the degenerate edge fires (\hyperref[sec:rules]{\S~\ref*{sec:rules}}), and the block collapses to one string $|k_0\rangle|a^{k_0}\rangle$; the algorithm breaks already in the middle of exponentiation. With further entanglement~$\Keff$ grows again, but the final limit remains $m\lesssim N_*$. Order~$r$ enters the criterion only through non-factorizability $r\ne2^j$; given that condition the value of~$r$ itself does not enter the limit.
+
+At the final step $t=m$ the distribution is flat, not Porter--Thomas, therefore the front is razor-sharp: at $m\le400$ one has $p_i=2^{-m}\ge\varepsilon$ and all strings are visible, while at $m\ge401$ condition $p_i<\varepsilon$ holds immediately for all. The second case is exactly the degenerate edge of the \CollapseRuleG{} (\hyperref[sec:rules]{\S~\ref*{sec:rules}}): joint removal would zero~$\rho$, therefore one string $|k\rangle|a^k\rangle$ is preserved with conditional Born probability. One string of periodic structure carries nothing, and subsequent QFT gives an almost uniform spectrum instead of peaks at multiples of~$Q/r$. The value of~$r$ does not enter this condition beyond the already made assumption $r\ne2^j$.
+
+For Shor and QPE what matters is non-factorizability of the state in the pointer-state basis (for period finding---condition $r\ne2^j$) and counting-register width; neither order~$r$ itself nor circuit size enter the criterion given the first condition:
+\begin{equation}
+\log_2\Keff=m\lesssim N_*\approx400{,}4.
+\end{equation}
+Standard Shor for an $L$-bit module uses $m=2L$, therefore it is viable only at $L\lesssim200$ and fails already at $L\approx201$ ($m=402$). For RSA-512 ($m=1024$) it \emph{collapses} in the model.
+
+However~$m$ need not equal~$2L$. Ekerå--Håstad schemes~\cite{ekera2017} reduce RSA factorization to short discrete logarithm and use a counting register of width $m\approx L/2+L/s$ with compromise parameter~$s$. For RSA-512 at $s\ge4$ this gives $m\le384<N_*$: string weight remains above threshold, the wall does not fire, and the module factorizes. The model therefore does not protect RSA-512---it forbids only standard period finding with $m=2L$. Since $m\ge L/2$ for any~$s$, the unconditional protection boundary lies around $L\gtrsim800$: for RSA-1024 and RSA-2048 all known variants fall in zone $m>N_*$.
+
+\paragraph{General branching wall.}
+From the above follows a general prohibition not tied to period finding. Any \emph{non-factorizable} superposition with equal weights $p_i=2^{-m}$ over more than~$2^m$ pointer-basis strings at~$m\ge401$ is invisible as a whole: the degenerate edge fires (\hyperref[sec:rules]{\S~\ref*{sec:rules}}), and the register collapses to one string. Under the same condition fall Grover search on~$N>N_*$ qubits (uniform superposition over~$2^N$ strings), QPE and amplitude estimation at coherent counting-register width~$m>N_*$; only factorization saves (\hyperref[sec:factorized]{\S~\ref*{sec:factorized}})---$|+\rangle^{\otimes N}$, intermediate Shor stages, narrow Ekerå--Håstad registers. For a \emph{flat} distribution the degenerate edge arrives immediately at $m\ge401$. In RCS the Porter--Thomas distribution is different: at $N=403$ already $W\approx98\%$, at $N=405$---$W\to1$, but still $n\sim10^{111}$ strings survive; one string remains only around $\Ncl\approx408{,}5$. The soft front of removed mass is steep in window $N\approx400$--$405$, classicality~$\Ncl\approx408{,}5$.
+
+This is the main falsifiable prediction of the model---stronger and closer to experiment than the consequence for RSA-1024: mirror circuit, local marginal test, and RCS scan on one $404$-qubit processor (\hyperref[sec:experiment]{\S~\ref*{sec:experiment}}) directly test the geometry of this wall, whereas factorization of modules above~$L\gtrsim800$ is not yet reachable by~$m$.
+
+Experiment does not contradict the model even where analog simulators involve hundreds and thousands of entangled particles: particle number is not branch number. For a GHZ state of~$1000$ spins $\Keff=2$, not~$2^{1000}$; spin chains and cold atoms evolve by Hamiltonian, not maintaining equal superposition over~$2^N$ strings of computational~$Z$-basis. The \CollapseRule{} counts branches in the environment pointer basis (\hyperref[sec:rules]{\S~\ref*{sec:rules}}), not arbitrary many-body entanglement; direct conflict would arise only upon demonstration of stable uniform superposition wider than~$N_*$ in this basis---no such experiment exists.
+
+In a fault-tolerant scheme physical qubits may be far more than~$N_*$, but the limit concerns not their number but logical algorithm structure---width~$m$ of the logical counting register. Syndrome measurements record only errors in the environment and do not reveal logical state (stabilizers commute with logical operators), therefore period-finding strings by themselves are not converted to classical recorded mode. For the same reason estimate $\langle k\rangle$ does not apply to the logical register: correction does not let the environment accumulate which-path recording of logical state specifically.
+
+For modules above the stated boundary one cannot assert that another factorization algorithm with~$\Keff\le\Ost$ at all stages cannot exist; no such algorithm is known today.
+
+\section{Experimental Test}
+\label{sec:experiment}
+
+The absolute value $\varepsilon\sim 10^{-121}$ is unreachable in the laboratory as a direct measurement. Therefore we propose to capture boundary geometry, the break between two chains, and the nonlinear signal of the local marginal test---a shift of one qubit's probabilities without measuring the entire register. The scan runs over qubit number~$N$, circuit depth~$d$, and chain structure. These are not three independent threshold parameters: the \CollapseRule{} compares branch weights with~$\varepsilon$; $N$, $d$, and structure only set what distribution~$\{p_i\}$ the circuit prepares. In RCS after saturation~$d\gtrsim d_{\mathrm{sat}}$ the wall sits around~$N\approx400$; a smaller circuit shifts it in~$d$, and narrow branching at the same~$N$ and~$d$ gives no wall.
+
+\paragraph{Boundary geometry.}
+Control under independent errors: hyperbola $N\cdot d\approx\mathrm{const}$ (error budget) is an accumulation-model approximation, not a consequence of standard quantum mechanics and not the \CollapseRule{} threshold geometry; the working control curve is built from measured noise channels. Threshold wall model (\hyperref[sec:pruning]{\S~\ref*{sec:pruning}}): at $d<d_{\mathrm{sat}}$ the boundary depends on depth, and after Porter--Thomas distribution is established at $d\gtrsim d_{\mathrm{sat}}$ it bends toward vertical. The bend lies in region $N\approx400\pm3$. Front $W=1-(1+u)e^{-u}$ with $u=2^{N-N_*}$; per qubit $u$ doubles. At $u\ll1$ we have $W\simeq u^2/2$, therefore $W$ grows roughly fourfold per qubit; in the transition window ($N\sim400$) growth of $W$ slows. The threshold is not tuned, therefore bend position should not follow reduction of ordinary error rate.
+
+\paragraph{Mirror circuit.}
+The idea is random-circuit echo: a register from $|0\rangle^{\otimes N}$ is run through scrambler~$U$ and reverse mirror~$U^\dagger$; under standard unitary evolution the state returns to zero, while the \CollapseRule{} inside~$U$ removes branches and breaks compensation. Metric is return probability $F=\bigl|\langle 0|U^\dagger U_{\mathrm{phys}}|0\rangle\bigr|^2$~\cite{swingle2018}. Predicting~$F$ classically is not required: it suffices to run $U U^\dagger$ repeatedly on the chip and measure the fraction of returns to $|0\rangle^{\otimes N}$. Poisson: $M\sim 100/F$ copies. Under independent stochastic two-qubit gate noise a rough estimate is $F\approx e^{-N d e_{2q}}$ (in each of two passes of order $N d/2$ gates). At $e_{2q}=3\times 10^{-3}$, $d=40$, $N\sim400$ this is $F\sim10^{-21}$, which practically closes the test; at $e_{2q}=10^{-4}$---of order $0{,}20$. Testability condition $e_{2q}\lesssim 5/(N d)$ (so that $F\gtrsim10^{-2}$). Randomized compiling~\cite{wallman2016} separates stochastic noise from coherent compensation. Sensitivity~$\delta$ of the mirror circuit sets the lower edge of the window: at $\delta=10^{-3}$ removed weight becomes visible around $N=396$ qubits.
+
+\paragraph{Discrimination from hardware noise.}
+At fixed $N$, $d$, and circuit structure the ordinary noise boundary should shift when measured~$e_{2q}$ changes, whereas threshold front position in~$N$ is set by~$\varepsilon$ and does not shift; lowering~$e_{2q}$ only changes the ability to see this front. Therefore repeating the scan on devices or calibrations with different~$e_{2q}$ is the main distinguishing test. Unknown correlated noise not following measured~$e_{2q}$ remains a competing explanation~\cite{kalai2016,rinott2022}.
+
+\paragraph{Paired circuits.}
+Comparison on one chip at the same~$N$ and same depth~$d$; arms differ by chain structure, not depth. Branching width is set by how many pointer-basis strings (computational~$Z$) carry weight \emph{at each layer}, not by whether all qubits are entangled. Arm~A, wide: random single-qubit rotations and two-dimensional layers of two-qubit gates (RCS). Superposition fills almost all~$2^N$ strings, and for Haar distribution $\Keff\approx2^{N-1}$ after~$d\gtrsim d_{\mathrm{sat}}$. Arm~B, narrow: $\Keff$ is small \emph{throughout} the circuit. A classical reversible network (CNOT, SWAP on computational states) holds one string, $\Keff=1$. A CNOT chain after one~$H$ gives GHZ: all qubits are entangled, but only two live branches, $\Keff=2$. Echo~$U^\dagger U$ on the narrow path is \emph{not} such: in the middle of the first~$U$ the distribution is already Haar, and the threshold fires before unwind. ``Narrow path'' means small branching width, not smaller~$d$ and not disabling part of the qubits. In the corresponding transition region arm~B works normally; A/B difference captures wall geometry. Signature is residual deviation of~A not disappearing when ordinary errors are reduced. Isolation does not close the gap: chain structure helps, not only increasing relaxation and dephasing times~$T_1/T_2$ (ordinary hardware qubit coherence scales). Scan along hyperbola $N\cdot d\approx\mathrm{const}$ is a separate control of the ordinary error-accumulation model (noise budget almost the same at different~$N$), not a difference of depths A and B; at each such~$(N,d)$ arm systematics differ.
+
+\paragraph{Local marginal test.}
+Circuit: $404$ qubits on one chip---control~$C$, $402$ ancilla, qubit~$A$ entangled with~$C$ by a Bell pair. Qubit~$C$ is not measured. The bit is encoded by operation: $Z$-control---controlled-$U$; $X$-control---$H$ on~$C$, controlled-$U$, $H$ back. Conditional circuit on ancillas: at~$C=0$---identity, at~$C=1$---scrambler~$U$; mirror~$U^\dagger$ is not needed---marginal is fixed at trimming moment. Metric is marginal of qubit~$A$: $\rho_A=\Tr_{C,\mathrm{anc}}(\rho)$, i.e.\ $P(A{=}0)$ and $P(A{=}1)$.
+
+In standard quantum mechanics both operations are local relative to~$A$, and its marginal is strictly~$1/2$. In the model $Z$-control cuts fraction $W(2u)$ of the scrambled arm, and after global renormalization
+\begin{equation}
+P_Z(A{=}1)=\frac{1-W(2u)}{2-W(2u)},
+\qquad
+P_X(A{=}1)=\tfrac12,
+\end{equation}
+where $u=2^{N-N_*}$. Under $X$-control scrambled micro-branches are symmetrically linked to $A=0$ and~$A=1$; removal shifts both outcomes equally. Scan over~$N$:
+\begin{table}[ht]
+\centering
+\begin{tabular}{@{}ccc@{}}
+\toprule
+$N$ & $P_Z(A{=}1)$ & $P_X(A{=}1)$ \\
+\midrule
+$400$ & $35{,}6\%$ & $50\%$ \\
+$401$ & $16{,}3\%$ & $50\%$ \\
+{\boldmath\bfseries $402$} & {\boldmath\bfseries $1{,}6\%$} & {\boldmath\bfseries $50\%$} \\
+\bottomrule
+\end{tabular}
+\caption{Marginal probabilities of qubit~$A$ under $Z$- and $X$-control; $N$ is the number of ancillas.}
+\label{tab:marginal-scan}
+\end{table}
+Signature is monotonic fall of $P_Z(A{=}1)$ with fixed $P_X(A{=}1)=1/2$. Hardware fault reproduces suppression of both arms, not one. The test does not depend on choice of preferred layer (\hyperref[sec:comoving]{\S~\ref*{sec:comoving}}): at centimeter baseline shift $vl/c^2\sim4\times10^{-14}$~s against readout time $\sim100$~ns, i.e.\ the layer is unobservable and the result does not depend on it.
+
+\paragraph{Failure of standard Shor.}
+Signature is QPE/Shor on a counting register of growing width~$m$: collapse at $m\to400$ for any order~$r$ that is not a power of two (\hyperref[sec:pruning]{\S~\ref*{sec:pruning}}). Base~$a$ with $r=2^j$ gives an extra zero control: the counting register factorizes, and at $j\lesssim N_*$ all weights remain above~$\varepsilon$---the wall should not fire until the same~$m$ as for factorized $|+\rangle^{\otimes N}$. A pair of runs at the same $m$ and~$d$ with $r=2^j$ and $r\ne2^j$ is the same differential test as paired A/B circuits above, but inside one algorithm. Standard Shor with $m=2L$ in the model does not factorize modules from $L\approx201$ bits, whereas RSA-512 remains vulnerable to Ekerå--Håstad schemes with $m\le384$. The RCS transition is not shifted by hardware improvement: the front remains around $400$--$404$ qubits. A $404$-qubit processor enables the local marginal test and superluminal channel. Competing explanation is correlated noise~\cite{kalai2016}: its boundary follows error rate, whereas the threshold boundary is set by~$\varepsilon$. Statistical test of RCS and its dependence on noise model are discussed in~\cite{rinott2022}. Comparison with GRW/CSL~\cite{ghirardi1986,ghirardi1990,bassi2013}: they have plane $(\lambda,r_c)$; here $\varepsilon=1/\Ost$ is not tuned. Structural choices---einselection basis, global renormalization (\hyperref[sec:rules]{\S~\ref*{sec:rules}}), and width measure---remain.
+
+\section{Superluminal Telephone}
+\label{sec:signaling}
+
+After confirmation of the local marginal test (\hyperref[sec:experiment]{\S~\ref*{sec:experiment}}) the same circuit is moved to a separated baseline of distance~$l$: qubit~$A$, entangled with~$C$ by a Bell pair, is delivered to Bob in advance by telecom fiber, and the effect becomes a communication channel. Working point is $404$ qubits ($402$ ancillas; $C$ and~$A$ are not included in~$N$). Alice does not measure~$C$; the bit is encoded by $Z$- or $X$-control over the entire ensemble of~$M$ acts. At~$C=0$---identity, at~$C=1$---scrambler~$U$. Bob measures~$A$ in the~$Z$ basis.
+
+In ordinary quantum mechanics Alice's local unitary operations on~$C$ and ancillas do not change $\rho_A$ at Bob: when measuring~$A$ in the~$Z$ basis he always sees $P(A{=}1)=50\%$, regardless of Alice's choice between $Z$- and $X$-control. In the model the \CollapseRule{} trims global branches of system $C+\text{ancilla}+A$ and renormalizes the remainder (\hyperref[sec:rules]{\S~\ref*{sec:rules}}). $Z$- and $X$-control yield \emph{different} full matrices~$\rho$, not two ensembles of the same~$\rho$. At $N=402$:
+\begin{equation}
+P_Z(A{=}1)=\frac{1-W(2u)}{2-W(2u)}\approx1{,}62\%,
+\qquad
+P_X(A{=}1)=\tfrac12,
+\end{equation}
+difference $\approx48{,}4$ percentage points. In ordinary quantum mechanics both probabilities equal $50\%$.
+
+The signal arises precisely from the \emph{absolute} threshold. If the threshold depended only on relative weights, renormalization would not change Bob's observable probabilities. In GRW-type collapse models averaged evolution is linear, therefore different preparations of one~$\rho$ are indistinguishable and the superluminal channel is closed~\cite{ghirardi1986,ghirardi1990,bassi2013}. For Weinberg's nonlinear quantum mechanics Gisin and Polchinski showed that local operations on one side of an EPR pair change statistics on the other~\cite{weinberg1989,gisin1990,polchinski1991}. Here~$U_Z$ and~$U_X$ are both local relative to~$A$, therefore in linear theory~$\rho_A$ does not change under either; nonlinearity of~$\mathcal{N}(\rho)$ violates precisely this marginal preservation (\hyperref[sec:rules]{\S~\ref*{sec:rules}}).
+
+Bob's unit frequency is the mean of $M$ coin tosses with probability~$q$; width equals $\sqrt{q(1-q)/M}$. For $\pm 2\sigma$ intervals around~$P_Z(A{=}1)$ and~$1/2$ not to overlap,
+\begin{equation}
+\bigl|P_Z(A{=}1)-\tfrac12\bigr|
+\ge
+2\Bigl(\sqrt{P_Z(A{=}1)\bigl(1-P_Z(A{=}1)\bigr)/M}+\sqrt{1/(4M)}\Bigr).
+\end{equation}
+Hence at $N=402$ we obtain $M\approx7$ acts per bit. Each act is direct controlled-$U$ on ancillas at~$C=1$ (at~$C=0$---identity). On a two-dimensional lattice saturation is $d_{\mathrm{sat}}\sim\sqrt{N}\approx20$ layers (\hyperref[sec:pruning]{\S~\ref*{sec:pruning}}) at layer duration of tens of nanoseconds giving $t_{\mathrm{run}}\approx0{,}5$~$\mu$s per act; $M\cdot t_{\mathrm{run}}\approx3{,}5$~$\mu$s, bitrate $\approx280$~kbit/s. Each act consumes one Bell pair~$C$--$A$ (after readout of~$A$ new entanglement is needed), therefore a stable channel requires pair distribution rate $R_{\mathrm{Bell}}=1/t_{\mathrm{run}}\approx2\times10^6$ pairs/s; at lower~$R_{\mathrm{Bell}}$ real bitrate is limited by~$R_{\mathrm{Bell}}/M$, not only by~$t_{\mathrm{run}}$ on the chip. Readout of qubit~$A$ at Bob takes nanoseconds and is not included in~$t_{\mathrm{run}}$.
+
+The superluminal signal itself is a collapse jump of duration $t_{\mathrm{coll}}$ (\hyperref[sec:collapse-duration]{\S~\ref*{sec:collapse-duration}}), simultaneous on the FRW layer (\hyperref[sec:comoving]{\S~\ref*{sec:comoving}}). The channel beats light if $M\cdot(t_{\mathrm{run}}+t_{\mathrm{coll}})<l/c$; at room-temperature estimate $t_{\mathrm{coll}}\sim25$~fs minimum baseline $\approx1{,}05$~km. The local marginal test remains on one $404$-qubit chip (baseline in centimeters); the race with light is set by separating~$A$ and Alice's station by at least that distance after effect confirmation. Synchronization of control and readout on a unified comoving time scale is described in~\hyperref[sec:comoving]{\S~\ref*{sec:comoving}}.
+
+\paragraph{Two-way communication.}
+Two-way communication is possible with symmetric $404$-qubit setups at each station: each has $402$ ancillas and its own half of a Bell pair~$C$--$A$. In Alice$\to$Bob tick $C$ and ancillas are at Alice, $A$ at Bob; in Bob$\to$Alice tick roles swap. $C$ and~$A$ are control and marginal readout, not ``Alice's and Bob's qubits.'' One act consumes a pair: after readout of~$A$ new entanglement is needed, the same pair is unavailable for the next bit. In the active tick the pair-source station must provide the same~$R_{\mathrm{Bell}}\approx2\times10^6$ pairs/s. With one pair one cannot simultaneously transmit and receive---either we speak or listen. Opposing ticks are separated on the comoving layer (\hyperref[sec:comoving]{\S~\ref*{sec:comoving}}), not launched simultaneously. Other engineering assumptions are in \hyperref[sec:discussion-signaling]{\S~\ref*{sec:discussion-signaling}}.
+
+\section{CMB Frame}
+\label{sec:comoving}
+
+The model \emph{assumes} that the quantity~$\Ost$ and collapse simultaneity are set not by laboratory clocks but on a layer of constant cosmological time of homogeneous isotropic Friedmann--Robertson--Walker (FRW) metric---standard geometry of the expanding Universe. In this idealization layer $t_{\mathrm{FRW}}=\mathrm{const}$ is one for the entire metric: all comoving observers (zero peculiar velocity) agree on simultaneity. Practically the same preferred frame is the rest frame of the cosmic microwave background (CMB); it is to this frame that the model attaches the collapse jump, not to local simultaneity of each laboratory. An Earth setup moves relative to the CMB at speed of order $370$~km/s, therefore its Einstein or GPS synchronization is shifted from this layer by $vl/c^2$ (below). Entangled pairs are separated subluminally and remain inside one causal patch, therefore the operation budget is defined over the entire experiment. The jump is simultaneous on this layer in the idealization of homogeneous FRW metric; in inhomogeneous or rotating geometries a global comoving layer is not naturally defined. Rest relative to the CMB defines a preferred frame; compatibility with constraints on Lorentz-invariance violation~\cite{mattingly2005,liberati2013} is not discussed here. Open questions of extending the CMB layer to local systems, preferred frame, and causal consistency are in \hyperref[sec:discussion-comoving]{\S~\ref*{sec:discussion-comoving}}.
+
+\paragraph{Preferred-layer test.}
+\label{sec:comoving-test}
+The laboratory moves relative to the CMB at speed $v\approx370$~km/s. Shift $vl/c^2$ exceeds one readout time~$\tau$ at $l\gtrsim(c^2/v)\tau$; for $\tau\sim100$~ns this is $l\gtrsim24$~km. Events are launched \emph{deliberately simultaneously} in the laboratory. Then orientation of the baseline relative to the CMB dipole decides whose recording first crosses the FRW layer, and Bob's statistics should oscillate with \emph{sidereal} period ($\approx23$~h~$56$~min), not solar days. Solar motion (temperature, grid) is filtered out by this period.
+
+The Alice$\to$Bob channel is not switched off: if Alice launches measurement earlier than Bob in the laboratory with margin greater than~$vl/c^2$ (at $24$~km this is~$\sim100$~ns), she is earlier on the FRW layer too at any time of day. This margin already covers~$t_{\mathrm{coll}}\sim25$~fs.
+
+This is a separate protocol, not a race with light. The goal is to verify that the preferred layer coincides with rest relative to the CMB. Laboratory simultaneity is set by Einstein synchronization: light pulse round trip, midpoint of flight is the common tick; in practice GPS/GNSS or two-way fiber transmission do the same. Such synchronization is tied to Earth time, not CMB: layer difference is precisely shift $vl/c^2$.
+
+\paragraph{Synchronization by comoving clocks.}
+The model postulates collapse simultaneity on the CMB layer. Since laboratory clocks do not coincide with CMB-layer simultaneity, to synchronize by absolute collapse time local clock readings must be converted to cosmological time~$t_{\mathrm{FRW}}$. Alice and Bob first synchronize atomic clocks in the usual way, then convert proper times along known worldlines of the stations and metric model. For nearby Earth stations the main simultaneity correction to first order equals $\Delta t_{\mathrm{CMB}}\simeq\mathbf{v}\!\cdot\!\Delta\mathbf{x}/c^2$, accounting for velocity and baseline orientation relative to the CMB. If, for example, Alice is on Earth and Bob in open space, this correction alone is insufficient: in a weak field local clock rate is linked to comoving time by
+\begin{equation}
+\frac{d\tau}{dt_{\mathrm{FRW}}}\simeq1+\frac{\Phi}{c^2}-\frac{v^2}{2c^2},
+\end{equation}
+therefore along each worldline one integrates gravitational potential~$\Phi$ and kinematic time dilation separately. Additionally one accounts for Earth rotation and orbital motion, space-station trajectory, propagation delay of calibration signals, and local metric perturbations.
+
+On this common scale one can schedule control and readout moments of the superluminal channel in advance. Such synchronization is especially convenient at large, including space, distances: both stations use one cosmological time coordinate rather than determining order of remote events by exchanging light signals during the session. For baseline $\sim1$~km maximum kinematic correction is about $4$~ns, small compared with act $\sim0{,}5$~$\mu$s but available for calibration; at space baseline combined kinematic and gravitational correction becomes substantial. This is not a separate physical signal of global clocks but conversion of local clock readings to the assumed preferred frame; its accuracy is limited by ephemeris precision, gravitational field model, and extension of the CMB layer to inhomogeneous geometries (\hyperref[sec:discussion-comoving]{\S~\ref*{sec:discussion-comoving}}).
+
+\section{Discussion and Open Questions}
+\label{sec:discussion}
+
+\paragraph{Integer micromodel.}
+The postulate of limited description and sketch of integer grid $n_i/\Ost$ are given in \hyperref[sec:rules]{\S~\ref*{sec:rules}}. Full microtheory from this sketch is not yet derived. Open obstacles: under tensor product of subsystems weights of form $n_i m_j/\Ost^2$ do not lie on the same grid---a composition theory with preserving rounding is needed; as $\Ost(t)$ decreases (\hyperref[sec:cosmological-limit]{\S~\ref*{sec:cosmological-limit}}) the entire discrete distinguishability scale is rebuilt; the moment of applying map~$\mathcal N$ is not specified---after a gate, after einselection recording by the environment, or continuously during evolution---which determines whether a new branch can grow to~$p_i\ge\varepsilon$. Until these are resolved the \CollapseRule{} specifies an effective one-step rule on the full density matrix of an entangled system implementing the postulate for einselection objects, not a closed discrete quantum mechanics with unambiguous evolution~$\rho(t)$.
+
+\paragraph{Local Bekenstein bound.}
+In this work the threshold is determined by the global causal-patch budget and is the same for all entangled systems. An alternative microtheory is possible in which available precision is additionally limited by the Bekenstein bound $S\le 2\pi ER/(\hbar c)$ for a region containing physical carriers of entanglement~\cite{bousso2002}. For a compact system this local memory limit may be stricter than the cosmological operation budget; then $\varepsilon$ and critical qubit number $N_*$ will depend on setup size and energy. Whether quantum state should be treated as locally stored information or information of the entire causal patch remains an open question.
+
+\paragraph{Palmer invariant set.}
+A related idea is Palmer's invariant set~\cite{palmer2009}: reality is limited to a fractal invariant set. Here the limitation is different: operational distinguishability of states within a causal patch, not geometry of an attractor.
+
+\paragraph{Branches.}
+Absolute threshold requires unambiguously defined branches. Difficulties of their definition and counting are discussed by Saunders~\cite{saunders2021}. Here probabilities are set by absolute Born weights $p_i=\Tr(P_i\rho)$ in the einselection basis, not by branch number; the rule is a function of a single~$\rho$. Contrast between $Z$- and $X$-control in the local marginal test and in its separated realization does not arise from two decompositions of one~$\rho$ into ensembles but from different unitary operations changing~$\rho$ itself; dependence on coarse-graining level remains an open question.
+
+\paragraph{CMB frame and causality.}
+\label{sec:discussion-comoving}
+In \hyperref[sec:comoving]{\S~\ref*{sec:comoving}} collapse simultaneity is postulated on a constant FRW time layer; on cosmological background it coincides with the CMB rest frame. For inhomogeneous gravitational field no unambiguous extension of this layer from cosmological background to local Earth and spacecraft systems is defined. Conversion of station proper times to~$t_{\mathrm{FRW}}$ depends on worldlines, ephemerides, and metric model; required precision and experimental way to test preferred frame remain open. The preferred layer sets a single order of remote events and thereby may exclude causal loops arising under Lorentz-invariant superluminal transmission only if all nonlinear dynamics strictly obey this foliation; causal consistency of the full microtheory is not yet shown.
+
+\paragraph{Non-conservation of energy.}
+Estimate~\eqref{eq:coll-energy} links non-conservation scale with~$t_{\mathrm{coll}}$ via act uncertainty ($\Delta E_{\mathrm{unc}}\gtrsim\hbar/t_{\mathrm{coll}}$, non-conservation $\lesssim\Delta E_{\mathrm{unc}}$); collapse~\eqref{eq:branch-energy} gives exact renormalization shift and does not contain~$t_{\mathrm{coll}}$. Under partial trimming it may be noticeable, but in degenerate Born choice mean shift vanishes (\hyperref[sec:collapse-duration]{\S~\ref*{sec:collapse-duration}}), unlike GRW/CSL models~\cite{ghirardi1986,ghirardi1990,bassi2013} where parameter~$\lambda$ is limited by spontaneous heating. Whether energy is emitted or absorbed, whether a perpetual motion machine is possible---beyond this work. Energy balance at collapse is a topic for a separate article.
+
+\paragraph{Superluminal telephone engineering.}
+\label{sec:discussion-signaling}
+The scheme in~\hyperref[sec:signaling]{\S~\ref*{sec:signaling}} sets preliminary architecture and working estimates for direct controlled-$U$. The engineering bottleneck is not~$t_{\mathrm{run}}$ on the chip nor~$t_{\mathrm{coll}}$, but the Bell-pair pipeline: at~$M\approx7$ and~$t_{\mathrm{run}}\approx0{,}5$~$\mu$s one needs rate~$R_{\mathrm{Bell}}\approx2\times10^6$ pairs/s per direction, orders of magnitude above typical quantum communication lines. Possible optimization is to prepare $U|0\rangle$ offline on a buffer register parallel to the previous act, and in the tick at~$C=1$ substitute it by controlled-SWAP (at~$C=0$ ancillas remain in~$|0\rangle$). In standard quantum mechanics this is equivalent to controlled-$U$ at the level of finite global~$\rho$; for nonlinear \CollapseRuleG{} equivalence requires a separate assumption of no threshold event during preparation and storage of the prefabricated state. If such optimization is admissible, act duration shrinks to $t_{\mathrm{run}}\approx50$~ns (loading prefabricated state and $Z$/$X$-control on~$C$, without rerunning $d_{\mathrm{sat}}$ layers), bitrate rises to $\approx2{,}8$~Mbit/s, minimum baseline to $\approx100$~m, but~$R_{\mathrm{Bell}}$ rises to~$\approx2\times10^7$ pairs/s. In the nonlinear model final state by itself may not determine outcome: threshold may fire already during offline preparation, therefore equivalence of prefabricated state and controlled-$U$ must be specified by microdynamics and tested experimentally. Also open are resources and duration of multi-qubit controlled-SWAP, buffer reset, pair generation and delivery at rate~$R_{\mathrm{Bell}}$, Bell-pair preservation, and readout synchronization.
+
+\bibliographystyle{unsrt}
+\bibliography{refs}
+
+\end{document}
