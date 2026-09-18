@@ -220,14 +220,14 @@ K\lesssim\Ost,
 N_*\approx\log_2\Ost\approx400{,}4.
 \end{equation}
 In further estimates it is convenient to use the round reference value~$400$.
-This estimate refers to one equiprobable alternative within one connected system, not to a factorized product or sequential classical recording. How to count branches for a product, GHZ, and a scrambled state is in \hyperref[sec:factorized]{\S~\ref*{sec:pruning}}.
+This estimate refers to one equiprobable alternative within one connected system, not to a factorized product or sequential classical recording. How to count branches for a product, GHZ, a Haar state, and RCS is in \hyperref[sec:factorized]{\S~\ref*{sec:scales}}.
 
 \paragraph{Dephasing.}
 Unitary entanglement with the environment moves inter-branch blocks into correlations and does not by itself reduce $C$ of the full~$\rho$. For coherence of live sectors to fall to~$\varepsilon$, dephasing of the full matrix is required; the mechanism may vary. As an example we take the hypothesis of independent proper-time clocks (BDPT)~\cite{ponfilenok2026bdpt}: blocks $P_a\rho P_b$ decay as $e^{-\chi}$, $\chi\propto (Mc^2)^2 t^{2/3}$, where $M$ is the rest mass of branch matter; radiation and $\Lambda$ energy do not enter the phase. This is a separate hypothesis, not a consequence of~$\Ost$.
 
 \paragraph{Objectivation.}
 \label{sec:objectivation}
-Objectivation is the occurrence of a single outcome in the full~$\rho$: a pure state of one branch. It is not an improper mixture, in which a subsystem looks mixed because of the environmental trace while the global superposition still lives, nor a proper classical mixture of several live branches without interference. If more than one sector is live and $C(\rho)\le\varepsilon$,
+Objectivation is the occurrence of a single outcome in the full~$\rho$: a pure state of one branch. It is not an improper mixture, in which a subsystem looks mixed because of the environmental trace while the global superposition still lives, nor a proper classical mixture of several live branches without interference. The quantity~$C(\rho)$ is the residual coherence of the full matrix in the einselection basis: a single trace distance to the mixture~$\Delta_P(\rho)$, not the coherence of one branch; it includes all blocks $P_i\rho P_j$ with $i\neq j$. If more than one sector is live and $C(\rho)\le\varepsilon$,
 \begin{equation}
 \mathcal C^{\mathrm{sel}}(\rho)
 =\frac{P_k\rho P_k}{p_k},
@@ -243,7 +243,7 @@ If \emph{all} branches are invisible, joint removal would zero~$\rho$. Objectiva
 \end{equation}
 The trigger is absence of a visible remainder, not~$C\le\varepsilon$. This case arises for a flat distribution and determines the fate of Shor's algorithm (\hyperref[sec:pruning]{\S~\ref*{sec:pruning}}).
 
-\section{Spatial and Temporal Scales of the Threshold}
+\section{Examples of the Rule}
 \label{sec:scales}
 
 \paragraph{Spatial tail of the $1s$ state.}
@@ -256,41 +256,57 @@ The quantity~$w$ is the Born probability to find the electron outside a sphere o
 |\psi\rangle=\sqrt{1-w}\,|\mathrm{in}\rangle
 +\sqrt w\,|\mathrm{out}\rangle .
 \end{equation}
-Removing the outer tail changes the positional outcome probability by~$w$. In a coherent state, interferometry over~$\Ost$ repetitions distinguishes amplitude~$\sqrt w$ when $\Ost w\gtrsim1$, i.e.\ at the same~$w\gtrsim\varepsilon$. Therefore for both coherent and already recorded tails trimming requires~$w<\varepsilon$; this gives $r\gtrsim7{,}6$~nm. This is removal of a small weight, including before environment recording. A single outcome ``inside or outside'' occurs only if both sectors survive and $C\le\varepsilon$, or if the outer tail is already cut and one branch remains.
+Removing the outer tail changes the positional outcome probability by~$w$. In a coherent state, interferometry over~$\Ost$ repetitions distinguishes amplitude~$\sqrt w$ when $\Ost w\gtrsim1$, i.e.\ at the same~$w\gtrsim\varepsilon$. Therefore for both coherent and already recorded tails trimming requires~$w<\varepsilon$; this gives $r\gtrsim7{,}6$~nm for a hydrogen atom in the ground state. This is removal of a small weight, including before environment recording. A single outcome ``inside or outside'' occurs only if both sectors survive and $C\le\varepsilon$, or if the outer tail is already cut and one branch remains.
 
-The condition~$w<\varepsilon$ for a recorded tail arises after irreversible fixation of ``inside'' and ``outside'' alternatives in the environment---for example at localized detector firing, scattering, or collision. Then BDPT may quench $C$ on the record mass, but the weight threshold remains the same. Computing the integral~$w(r)$ or choosing a coordinate basis is not recording itself. Both estimates refer to a physically distinguished integral sector, not an arbitrary coordinate cell.
+\paragraph{Factorized product.}
+\label{sec:factorized}
+For factorized $|+\rangle^{\otimes400}$ each qubit gives two outcomes of weight~$1/2$, altogether $400\times 2=800$---far below~$\Ost$. Branch removal does not arise because each factor carries weight $1/2\gg\varepsilon$. The weight of a particular computational string of all~$400$ qubits, e.g.\ $|0\ldots0\rangle$, equals $2^{-400}$, but that is a product of independent weights~$1/2$, not the weight of one branch.
 
-\paragraph{Tunneling.}
-Similarly for tunneling: the weight of the branch ``particle passed the barrier'' in one attempt is of order $p\sim e^{-2G}$, where $G$ is the Gamow exponent. The condition $p<\varepsilon$ gives $2G>\ln\Ost\approx278$. At typical attempt frequency $\nu\sim10^{21}\,\text{s}^{-1}$ the half-life $\tau_{1/2}\approx e^{2G}/\nu\approx \Ost/\nu$, i.e.\ $\tau\gtrsim10^{92}$~years---regardless of whether the channel is recorded by the environment or still coherent: in both cases trimming $p<\varepsilon$ applies. These numbers show the scale of the weight threshold, not the time of single-branch selection. The gap with the $^{128}\mathrm{Te}$ record ($\sim10^{24}$~years) is about $68$ orders of magnitude; the prediction is experimentally inaccessible.
+\paragraph{GHZ.}
+For GHZ all~$400$ qubits are entangled, but the global state is a superposition of only two strings, $|0\ldots0\rangle$ and $|1\ldots1\rangle$, each with weight $1/2$; one cannot sum over qubits. Branch removal does not arise because both live branches carry weight $1/2\gg\varepsilon$.
 
-\paragraph{Two paths to a single outcome.}
-\label{sec:two-clocks}
-Unitary copying into the environment does not by itself reduce $C$ of the full~$\rho$. Objectivation (\hyperref[sec:objectivation]{\S~\ref*{sec:objectivation}}) arises in two ways.
+\paragraph{Haar state.}
+In a Haar state in dimension~$D=2^N$ there is no factorization: a particular computational string, e.g.\ $|0\ldots0\rangle$, is already a branch of typical weight $p_i\sim2^{-N}$, and simultaneously of order $2^{N-1}$ such branches are distinguishable. At $N\gtrsim400$ this exceeds~$\Ost$, and the \CollapseRule{} removes almost all strings with $p_i<\varepsilon$; it is here that the ceiling $N_*\approx400$ applies, not in factorized $|+\rangle^{\otimes N}$ nor in GHZ.
 
-\emph{Small branches.} While evolution proliferates pointer strings, weights fall. If after trimming one branch remains, or the degenerate edge fires, selection has already occurred. The clock is branching width (circuit depth, number of microstates), not BDPT proper time and not Markovian $\mathrm{e}^{-t/\tau_D}$. For isolated RCS this is the wall at $N_*$: $t\sim d_{\mathrm{sat}}t_{\mathrm{layer}}$.
+\paragraph{RCS.}
+Random circuit sampling (RCS)~\cite{boixo2018,arute2019} prepares a state close to Haar, so the same ceiling applies; the removal front is in \hyperref[sec:pruning]{\S~\ref*{sec:pruning}}.
 
-\emph{Large branches.} Two or several fat records, $p_i\sim 1/2$. Trimming is silent, $C\sim 1$. Then BDPT quenches $C$; selection at $C\le\varepsilon$. For two equal branches $C=1$ until nearly complete dephasing. Time is set by $\chi(t)=\varepsilon$ at $Mc^2$ of matter in the split, $\chi\propto t^{2/3}$. This is an apparatus and Darwinian GHZ, not a processor on microseconds.
+\paragraph{Effective number of branches.}
+We define the effective number of branches of an entangled system via the inverse participation ratio (IPR)~\cite{thouless1974,grobe1994}:
+\begin{equation}
+\Keff \;=\; \frac{1}{\sum_i p_i^2}.
+\end{equation}
+Normalization is $\sum_i p_i=1$; the sum of squares equals unity only if a single branch is live. For~$K$ equal weights $p_i=1/K$ one has $\sum_i p_i^2=1/K$ and $\Keff=K$, so the ceiling $K\lesssim\Ost$ may saturate. For a Haar state in dimension~$D=2^N$ the situation is different:
+\begin{equation}
+\mathbb E\!\left[\sum_i p_i^2\right]=\frac{2}{D+1},
+\qquad
+\Keff\approx\frac{D+1}{2}\approx2^{N-1}.
+\end{equation}
+The last equality uses IPR concentration at large~$D$; in general the mean of the inverse is not the inverse of the mean.
+After removing branches with~$p_i<\varepsilon$ surviving weights satisfy $p_i\ge\varepsilon$ and $\Keff\le\Ost$. If $\rho=\bigotimes_a\rho_a$, the number of independently distinguishable elements equals $\sum_a \Keff(\rho_a)$; for non-factorizable $\rho$---$\Keff(\rho)$. Condition: $\sum_a \Keff(\rho_a)\le\Ost$. Hence
+\begin{equation}
+\log_2\Keff\le N_*\approx400{,}4.
+\end{equation}
+For the product above the sum over factors is~$800$, for GHZ~$\Keff=2$, for a Haar state and RCS~$\Keff\approx2^{N-1}$. As coupling between initially independent systems strengthens, the spectrum of reduced~$\rho$ and~$\Keff$ change continuously; at zero coupling the \CollapseRule{} applies to each system separately.
 
-The estimate $t_{\mathrm{thr}}\approx\ln\Ost\,\tau_D$ from the open-system exponential does not apply to the selection threshold.
-
-\section{Duration of Collapse and Non-conservation of Energy}
+\section{Non-conservation of Energy at Collapse}
 \label{sec:collapse-duration}
 
-Here we discuss the duration and energetic consequences of the trimming and selection \emph{jumps}---non-unitary maps~$\mathcal N$ and~$\mathcal C^{\mathrm{sel}}$---not the time over which branching width or BDPT bring the system to the threshold (\hyperref[sec:two-clocks]{\S~\ref*{sec:two-clocks}}). BDPT does not touch populations or shift branch energy: it is pure decay of blocks $P_i\rho P_j$. $t_{\mathrm{coll}}$ is how long the transition between two physical descriptions lasts at trimming or selection. Non-conservation of energy is a consequence of these maps and is bounded by the scale of~$t_{\mathrm{coll}}$. Simultaneity on the FRW layer refers to the jump, not to continuous $\chi(t)$.
+We denote by~$t_{\mathrm{coll}}$ the duration of the transition between two physical descriptions at trimming~$\mathcal N$ (removal of branches with $p_i<\varepsilon$) or selection~$\mathcal C^{\mathrm{sel}}$ (a single outcome; \hyperref[sec:rules]{\S~\ref*{sec:rules}}).
 
-Operationally we estimate $t_{\mathrm{coll}}$ as an \emph{upper} bound on act duration. In terms of environment temperature
+The jump cannot be localized in time more sharply than its duration, hence the uncertainty of its moment is~$\Delta t\sim t_{\mathrm{coll}}$. The uncertainty relation for the act is $\Delta E_{\mathrm{unc}}\,\Delta t\gtrsim\hbar$. In a thermal environment interactions decay on a timescale of order~$\hbar/k_B T$, including entanglement on which coherence depends; hence
 \begin{equation}
 \label{eq:coll-time}
 t_{\mathrm{coll}}\lesssim\frac{\hbar}{k_B T}.
 \end{equation}
-Illustratively, at $300\,\mathrm{K}$ the upper bound is $t_{\mathrm{coll}}\sim 25$~fs.
+At $300\,\mathrm{K}$ this is $\sim 25$~fs.
 
-The jump need not preserve unitary norm: before renormalization the total weight of removed branches may differ from unity. For an act of duration~$t_{\mathrm{coll}}$ the uncertainty relation $\Delta E_{\mathrm{unc}}\,t_{\mathrm{coll}}\gtrsim\hbar$ sets a lower bound on energy uncertainty, $\Delta E_{\mathrm{unc}}\gtrsim\hbar/t_{\mathrm{coll}}$. If the magnitude of energy non-conservation does not exceed~$\Delta E_{\mathrm{unc}}$, then
+The jump need not preserve unitary norm: before renormalization the total weight of removed branches may differ from unity. If energy non-conservation does not exceed~$\Delta E_{\mathrm{unc}}$, then
 \begin{equation}
 \label{eq:coll-energy}
 |\Delta E|\lesssim\frac{\hbar}{t_{\mathrm{coll}}}.
 \end{equation}
-This is an upper estimate via act uncertainty, not a direct derivation of $\Delta E\,\Delta t\lesssim\hbar$; without asserting that the corresponding energy is necessarily emitted or absorbed by the environment.
+This is an upper estimate via the same act uncertainty, not a direct derivation of $\Delta E\,\Delta t\lesssim\hbar$; without asserting that the corresponding energy is necessarily emitted or absorbed by the environment.
 
 \paragraph{Branch-trimming energy.}
 Mean state energy is $\langle H\rangle=\Tr(H\rho)$. After removing invisible sectors $S=\{i:p_i<\varepsilon\}$ we have $\mathcal{N}(\rho)=Q\rho Q/\Tr(Q\rho Q)$, and the energy shift is defined as
@@ -307,29 +323,10 @@ The shift is finite for any $W<1$ and does not exceed the spread of energies ove
 \section{Threshold Collapse in Quantum Computing}
 \label{sec:pruning}
 
-\paragraph{Effective number of branches.}
-\label{sec:factorized}
-We define the effective number of branches of an entangled system via the inverse participation ratio (IPR)~\cite{thouless1974,grobe1994}:
-\begin{equation}
-\Keff \;=\; \frac{1}{\sum_i p_i^2}.
-\end{equation}
-Normalization is $\sum_i p_i=1$; the sum of squares equals unity only if a single branch is live. For~$K$ equal weights $p_i=1/K$ one has $\sum_i p_i^2=1/K$ and $\Keff=K$, so the ceiling $K\lesssim\Ost$ may saturate. For a Haar state in dimension~$D=2^N$ the situation is different:
-\begin{equation}
-\mathbb E\!\left[\sum_i p_i^2\right]=\frac{2}{D+1},
-\qquad
-\Keff\approx\frac{D+1}{2}\approx2^{N-1}.
-\end{equation}
-The last equality uses IPR concentration at large~$D$; in general the mean of the inverse is not the inverse of the mean.
-After removing branches with~$p_i<\varepsilon$ surviving weights satisfy $p_i\ge\varepsilon$ and $\Keff\le\Ost$. If $\rho=\bigotimes_a\rho_a$, the number of independently distinguishable elements equals $\sum_a \Keff(\rho_a)$; for non-factorizable $\rho$---$\Keff(\rho)$. Condition: $\sum_a \Keff(\rho_a)\le\Ost$. Hence
-\begin{equation}
-\log_2\Keff\le N_*\approx400{,}4.
-\end{equation}
-For factorized $|+\rangle^{\otimes400}$ each qubit gives two outcomes of weight~$1/2$, altogether $400\times 2=800$---far below~$\Ost$: branch removal does not arise because each factor carries weight $1/2\gg\varepsilon$, not because string $|s\rangle$ has probability $2^{-N}$. For GHZ all~$400$ qubits are entangled, but the global state is a superposition of only two strings, $|0\ldots0\rangle$ and $|1\ldots1\rangle$, each with weight $1/2$; therefore $\Keff=2$, not $2^{400}$, and one cannot sum over qubits. Branch removal again does not arise because both live branches carry weight $1/2\gg\varepsilon$. For a scrambled state the distribution is nearly uniform over $2^N$ pointer-basis strings: typical weight of one string $p_i\sim2^{-N}$, but simultaneously $\Keff\approx2^{N-1}$ branches are distinguishable. At $N\gtrsim400$ this exceeds $\Ost$, and the \CollapseRule{} removes almost all strings with $p_i<\varepsilon$; it is here that the ceiling $N_*\approx400$ applies, not in factorized $|+\rangle^{\otimes N}$ nor in GHZ. Separately there acts the sequential classical recording constraint: recording each bit requires at least one operation, therefore recording length $L\le\Ost$. As coupling between initially independent systems strengthens, the spectrum of reduced~$\rho$ and~$\Keff$ change continuously; at zero coupling the \CollapseRule{} applies to each system separately.
-
 For a nearly equiprobable distribution substantial removal is expected as $\Keff$ approaches the ceiling $\Ost$. For a Porter--Thomas distribution~\cite{porter1956,boixo2018} rare tails cross the threshold earlier: at $N=N_*$ already $\Keff\approx2^{N-1}=\Ost/2$, and removed weight is substantial. Therefore the exact RCS front below is determined directly by the weight distribution, not by equality $\Keff=\Ost$.
 
 \paragraph{RCS limit.}
-For random circuit sampling (RCS)~\cite{boixo2018,arute2019} the number of qubits~$N$ and distribution width~$\Keff$ are critical. Let~$N$ be the number of qubits in the circuit and~$W=\sum_{i:\,p_i<\varepsilon}p_i$ the total Born weight of removed branches. The processor computational basis is the pointer-state basis set by qubit definition in interaction with the environment~\cite{zurek2003,zurek2009}; final readout only strengthens and registers the outcome in the same basis, it does not create it. Laboratory isolation suppresses decoherence \emph{between} pointer states and preserves high fidelity, but does not cancel the pointer-state basis. After entangling gates joint strings~$|x\rangle$ are einselection branches of the entire register with weights~$p_x=|\langle x|\psi\rangle|^2$, no longer reducible to a product of independent factors (\hyperref[sec:factorized]{\S~\ref*{sec:factorized}}). Trimming is imposed on these weights as they grow during circuit operation, before readout. For a coherent superposition of $K$ strings $C$ is of order unity, not~$\varepsilon$: BDPT on qubit mass over microseconds does not set the wall. The RCS wall is the small-branch path (\hyperref[sec:two-clocks]{\S~\ref*{sec:two-clocks}}). Readout fixes the already altered distribution; if many strings are still live at readout, a single outcome comes from selection at $C\le\varepsilon$ or the degenerate edge.
+For random circuit sampling (RCS)~\cite{boixo2018,arute2019} the number of qubits~$N$ and distribution width~$\Keff$ are critical. Let~$N$ be the number of qubits in the circuit and~$W=\sum_{i:\,p_i<\varepsilon}p_i$ the total Born weight of removed branches. The processor computational basis is the pointer-state basis set by qubit definition in interaction with the environment~\cite{zurek2003,zurek2009}; final readout only strengthens and registers the outcome in the same basis, it does not create it. Laboratory isolation suppresses decoherence \emph{between} pointer states and preserves high fidelity, but does not cancel the pointer-state basis. After entangling gates joint strings~$|x\rangle$ are einselection branches of the entire register with weights~$p_x=|\langle x|\psi\rangle|^2$, no longer reducible to a product of independent factors (\hyperref[sec:factorized]{\S~\ref*{sec:factorized}}). Trimming is imposed on these weights as they grow during circuit operation, before readout. For a coherent superposition of $K$ strings $C$ is of order unity, not~$\varepsilon$: BDPT on qubit mass over microseconds does not set the wall. Readout fixes the already altered distribution; if many strings are still live at readout, a single outcome comes from selection at $C\le\varepsilon$ or the degenerate edge.
 
 The reverse question is whether residual noise pushes part of the qubits into sequential classical recording mode. An error event records which-path information about roughly one qubit and may entangle it with environment matter, in which case that dust enters~$E_{\mathrm{br}}$; then $\langle k\rangle = N d e_{2q}/2$. At the working point $N\approx400$, $d=40$, $e_{2q}=10^{-4}$ this is $\langle k\rangle\approx0{,}8$---less than one qubit out of four hundred, wall shift within window $N\approx400\pm3$. The window in which the test works by fidelity and the window in which leakage is negligible coincide. (Upper estimate: the coherent component of which-path recording error does not create it.)
 
@@ -517,6 +514,9 @@ In \hyperref[sec:comoving]{\S~\ref*{sec:comoving}} simultaneity of trimming and 
 
 \paragraph{Non-conservation of energy.}
 Estimate~\eqref{eq:coll-energy} links non-conservation scale with~$t_{\mathrm{coll}}$ via act uncertainty ($\Delta E_{\mathrm{unc}}\gtrsim\hbar/t_{\mathrm{coll}}$, non-conservation $\lesssim\Delta E_{\mathrm{unc}}$); collapse~\eqref{eq:branch-energy} gives exact renormalization shift and does not contain~$t_{\mathrm{coll}}$. Under partial trimming it may be noticeable, but in degenerate Born choice mean shift vanishes (\hyperref[sec:collapse-duration]{\S~\ref*{sec:collapse-duration}}), unlike GRW/CSL models~\cite{ghirardi1986,ghirardi1990,bassi2013} where parameter~$\lambda$ is limited by spontaneous heating. Whether energy is emitted or absorbed, whether a perpetual motion machine is possible---beyond this work. Energy balance at collapse is a topic for a separate article.
+
+\paragraph{Objectivation only.}
+The postulate also admits a narrower rule: invisible branches are neither removed nor renormalized, and at $C\le\varepsilon$ only objectivation~$\mathcal C^{\mathrm{sel}}$ acts. The superluminal channel (\hyperref[sec:signaling]{\S~\ref*{sec:signaling}}) is then closed: the marginal shift is produced by map~$\mathcal N$, not by selecting one live branch. The working model takes both maps; which of them enters the dynamics remains open.
 
 \paragraph{Superluminal telephone engineering.}
 \label{sec:discussion-signaling}
