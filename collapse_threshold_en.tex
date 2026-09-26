@@ -90,7 +90,7 @@ Here $S_{\mathrm{dS}}$ denotes dimensionless entropy in nats. The two estimates 
 
 The calculation is carried out in the flat $\Lambda$CDM model: FRW metric with $\Omega_k=0$, $\Omega_m+\Omega_\Lambda+\Omega_r=1$; the radiation contribution in the present epoch is negligible ($\Omega_r<0{,}01\%$).
 
-Take the Hubble horizon $R=c/H$ and Friedmann's second equation for energy density~$\rho$ and pressure~$p$
+Take the Hubble horizon $R=c/H$, the radius of the apparent horizon in flat FRW, and Friedmann's second equation for energy density~$\rho$ and pressure~$p$
 \begin{equation}
 \dot H = -\frac{4\pi G}{c^2}(\rho+p).
 \end{equation}
@@ -105,7 +105,7 @@ Then $\rho=\rho_m+\rho_\Lambda$, $p_m=0$, $p_\Lambda=-\rho_\Lambda$, whence $\rh
 \frac{dR}{dt} = \frac{3}{2}\,c\,\Omega_m.
 \end{equation}
 
-Horizon entropy $S=\pi k R^2/\ell_P^2$:
+Entropy of the apparent horizon $S=\pi k R^2/\ell_P^2$:
 \begin{equation}
 \frac{dS}{dt}
 = \frac{2\pi k R}{\ell_P^2}\frac{dR}{dt}
@@ -121,12 +121,12 @@ Dark energy produces no entropy ($\rho_\Lambda+p_\Lambda=0$). The ratio
 \end{equation}
 --- $3\pi^2$~nats (about $42{,}7$~bits) per orthogonal matter operation. $\Omega_m$ and~$R$ cancel: the relation is holographic and epoch-independent while matter and~$\Lambda$ dominate.
 
-de~Sitter entropy is finite; its value is given above (\hyperref[sec:holographic]{\S~\ref*{sec:holographic}}). The identity $S_{\mathrm{dS}}-S=S_{\mathrm{dS}}\Omega_m$ is exact: $R_H^2=R_{\mathrm{dS}}^2\Omega_\Lambda$ for a flat universe without radiation. Remaining orthogonal operations
+de~Sitter entropy is finite; its value in nats, $S_{\mathrm{dS}}/k$, is given above (\hyperref[sec:holographic]{\S~\ref*{sec:holographic}}). The identity $S_{\mathrm{dS}}-S=S_{\mathrm{dS}}\Omega_m$ is exact: $R_H^2=R_{\mathrm{dS}}^2\Omega_\Lambda$ for a flat universe without radiation. Remaining orthogonal operations
 \begin{equation}
 \Ost(t)
 = \int_t^\infty \dot N_m\,dt'
-= \frac{S_{\mathrm{dS}}-S}{3\pi^2}
-= \frac{S_{\mathrm{dS}}\Omega_m}{3\pi^2}
+= \frac{S_{\mathrm{dS}}-S}{3\pi^2 k}
+= \frac{S_{\mathrm{dS}}\Omega_m}{3\pi^2 k}
 \approx 3{,}5\times 10^{120}
 \end{equation}
 The value for the present epoch is given here. The integral is finite because the horizon asymptotically tends to~$R_{\mathrm{dS}}$. In homogeneous Friedmann--Robertson--Walker (FRW) cosmology the quantity~$\Ost(t)$ is the same for comoving observers at one cosmological time.
@@ -195,7 +195,7 @@ Removal of invisible branches generally leaves several live sectors with $p_i\ge
 \qquad
 C(\rho)=\frac12\bigl\|\rho-\Delta_P(\rho)\bigr\|_1.
 \end{equation}
-For two orthogonal branches with weights $p$ and $1-p$ one has $C=2\sqrt{p(1-p)}$; for a Bell pair $C=1$.
+For two orthogonal branches with weights $p$ and $1-p$ one has $C=\sqrt{p(1-p)}$; for a Bell pair $C=1/2$.
 
 \paragraph{Irreversibility of branch removal.}
 Since $\Ost(t)$ decreases monotonically, $\dot\varepsilon>0$: the threshold only rises with time. A branch removed at an earlier threshold value remains below it and by \CollapseRuleD{} is not restored. Unitary evolution may subsequently create a branch with the same quantum numbers, but it will be a new branch, not restoration of the removed one.
@@ -223,7 +223,7 @@ In further estimates it is convenient to use the round reference value~$400$.
 This estimate refers to one equiprobable alternative within one connected system, not to a factorized product or sequential classical recording. How to count branches for a product, GHZ, a Haar state, and RCS is in \hyperref[sec:factorized]{\S~\ref*{sec:scales}}.
 
 \paragraph{Dephasing.}
-Unitary entanglement with the environment moves inter-branch blocks into correlations and does not by itself reduce $C$ of the full~$\rho$. For coherence of live sectors to fall to~$\varepsilon$, dephasing of the full matrix is required; the mechanism may vary. As an example we take the hypothesis of independent proper-time clocks (BDPT)~\cite{ponfilenok2026bdpt}: blocks $P_a\rho P_b$ decay as $e^{-\chi}$, $\chi\propto (Mc^2)^2 t^{2/3}$, where $M$ is the rest mass of branch matter; radiation and $\Lambda$ energy do not enter the phase. This is a separate hypothesis, not a consequence of~$\Ost$.
+Unitary entanglement with the environment moves inter-branch blocks into correlations and does not by itself reduce $C$ of the full~$\rho$ or raise its von Neumann entropy. For coherence of live sectors to fall to~$\varepsilon$, dephasing of the full matrix is required; the mechanism may vary. As an example we take the hypothesis of independent proper-time clocks (BDPT)~\cite{ponfilenok2026bdpt}: blocks $P_a\rho P_b$ decay as $e^{-\chi}$, $\chi\propto (Mc^2)^2 t^{2/3}$, where $M$ is the rest mass of branch matter; radiation and $\Lambda$ energy do not enter the phase. As the blocks decay, the entropy of the full~$\rho$ grows toward~$S\bigl(\Delta_P(\rho)\bigr)$. This is a separate hypothesis, not a consequence of~$\Ost$.
 
 \paragraph{Objectivation.}
 \label{sec:objectivation}
@@ -231,7 +231,9 @@ Objectivation is a proper mixture of the full, unreduced~$\rho$: when $C(\rho)\l
 \begin{equation}
 \Delta_P(\rho)=\sum_i P_i\rho P_i.
 \end{equation}
-It is not an improper mixture from the environmental trace, in which a subsystem looks mixed while the global superposition still lives. It is a proper mixture of the entire full density matrix. A single outcome already exists but is unknown; that unknownness is the von Neumann entropy of the mixture $S=-\operatorname{Tr}\bigl(\Delta_P(\rho)\log\Delta_P(\rho)\bigr)$. Thus objectivation is growth of this physical entropy: $S\bigl(\Delta_P(\rho)\bigr)\ge S(\rho)$. The mapping~$\Delta_P$ is equivalent to coarse-graining by the distinguishability threshold: the cells are live einselection sectors. The quantity~$C(\rho)$ is the residual coherence of the full matrix: a single trace distance to~$\Delta_P(\rho)$, including all blocks $P_i\rho P_j$ with $i\neq j$. Trimming is not required for this: when all branches are visible, $\mathcal N$ is the identity. If trimming already left one branch, the mixture is trivial and $S=0$. While $C>\varepsilon$, the distinction of~$\rho$ from the mixture~$\Delta_P(\rho)$ is itself still visible within the~$\Ost$ budget, so interference is retained in the description and zeroing is not applied.
+It is not an improper mixture from the environmental trace, in which a subsystem looks mixed while the global superposition still lives. It is a proper mixture of the entire full density matrix. A single outcome already exists but is unknown; that unknownness is the von Neumann entropy of the mixture $S=-\operatorname{Tr}\bigl(\Delta_P(\rho)\log\Delta_P(\rho)\bigr)$. Thus objectivation is growth of this physical entropy: $S\bigl(\Delta_P(\rho)\bigr)\ge S(\rho)$. Almost all of~$S\bigl(\Delta_P(\rho)\bigr)$ is accumulated by dephasing. At $C\le\varepsilon$ the zeroing act itself adds at most of order~$\varepsilon\log K$ by continuity of entropy~\cite{fannes1973,audenaert2007}, where $K\lesssim\Ost$ is the number of live sectors. The mapping~$\Delta_P$ does not shift the weights~$\{p_i\}$: it removes from~$\rho$ off-diagonals already invisible within the~$\Ost$ budget, and a Loschmidt echo~\cite{swingle2018} cannot restore them thereafter. This is equivalent to coarse-graining by the distinguishability threshold: the cells are live einselection sectors.
+
+The quantity~$C(\rho)$ is the residual coherence of the full matrix: a single trace distance to~$\Delta_P(\rho)$, including all blocks $P_i\rho P_j$ with $i\neq j$. Trimming is not required for this: when all branches are visible, $\mathcal N$ is the identity. If trimming already left one branch, the mixture is trivial and $S=0$. While $C>\varepsilon$, the distinction of~$\rho$ from the mixture~$\Delta_P(\rho)$ is itself still visible within the~$\Ost$ budget, so interference is retained in the description and zeroing is not applied.
 
 \paragraph{Degenerate case.}
 If \emph{all} branches are invisible, joint removal would zero~$\rho$, and a proper mixture of invisible branches is inadmissible. Then selection acts,
