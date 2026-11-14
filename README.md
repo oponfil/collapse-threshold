@@ -20,7 +20,8 @@ The paper proposes a **Collapse Threshold Rule** for quantum mechanics. A branch
 | --- | --- |
 | 1–4 | Holographic vs computational estimates of ε |
 | 5 | Collapse rule, residual coherence $C$, BDPT, objectivation |
-| 6–7 | Two clocks to one outcome; jump duration and energy |
+| 6 | Worked examples of the rule; effective number of branches $K_{\mathrm{eff}}$ |
+| 7 | Jump duration and energy non-conservation |
 | 8 | RCS wall, Shor limit by counting-register width |
 | 9 | Experimental proposals (mirror circuits, pair schemes, marginal test) |
 | 10 | Superluminal telephone: direct controlled-U, bitrate/base, two-way communication |
@@ -34,13 +35,25 @@ The paper proposes a **Collapse Threshold Rule** for quantum mechanics. A branch
 | `collapse_threshold_ru.tex` | Russian article source |
 | `collapse_threshold_en.tex` | English article source |
 | `refs.bib` | Shared bibliography |
-| `collapse_threshold_ru.pdf` | Compiled Russian PDF (21 pages) |
-| `collapse_threshold_en.pdf` | Compiled English PDF (20 pages) |
-| `build.ps1` | Build script (`pdflatex` + `bibtex`); both languages by default |
+| `collapse_threshold_ru.pdf` | Compiled Russian PDF (23 pages) |
+| `collapse_threshold_en.pdf` | Compiled English PDF (21 pages) |
+| `build.ps1` | Windows build script (`pdflatex` + `bibtex`); both languages by default |
 
 ## Build
 
-Needs a TeX distribution with `pdflatex`, `bibtex`, and Russian Babel/Cyrillic fonts (for example MiKTeX). By default both PDFs are built:
+Both files build with XeLaTeX or pdfLaTeX plus BibTeX. The simplest way is [Tectonic](https://tectonic-typesetting.github.io/), which runs all passes itself:
+
+```bash
+tectonic collapse_threshold_en.tex
+```
+
+```bash
+tectonic collapse_threshold_ru.tex
+```
+
+Under XeLaTeX / Tectonic the Russian version is set in Avenir Next, a macOS system font. Under pdfLaTeX it falls back to Comfortaa.
+
+On Windows, with a TeX distribution that has `pdflatex`, `bibtex`, and Russian Babel/Cyrillic fonts (for example MiKTeX), `build.ps1` builds both PDFs:
 
 ```powershell
 powershell -File build.ps1
@@ -52,6 +65,10 @@ One language only:
 powershell -File build.ps1 -Targets collapse_threshold_ru
 powershell -File build.ps1 -Targets collapse_threshold_en
 ```
+
+## Keywords
+
+objective collapse · objectivation · operationalism · branch removal · residual coherence · einselection · computational limit · Shor's algorithm · superluminal telephone · CMB frame
 
 ## Author
 

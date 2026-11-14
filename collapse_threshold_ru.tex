@@ -1,20 +1,36 @@
 % !TEX root = collapse_threshold_ru.tex
-\documentclass[12pt,a4paper]{article}
-\usepackage{cmap}
+\documentclass[11pt,a4paper]{article}
+\usepackage{iftex}
+\ifPDFTeX
+  \pdfminorversion=5
+  \pdfobjcompresslevel=0
+  \usepackage{cmap}
+  \usepackage[utf8]{inputenc}
+  \usepackage[T2A]{fontenc}
+\else
+  % Сборка XeTeX/tectonic: основной шрифт Avenir Next (системный шрифт macOS)
+  \usepackage{fontspec}
+  \setmainfont{Avenir Next}[UprightFont={* Regular}, ItalicFont={* Italic}, BoldFont={* Demi Bold}, BoldItalicFont={* Demi Bold Italic}]
+  \setsansfont{Avenir Next}[UprightFont={* Regular}, ItalicFont={* Italic}, BoldFont={* Demi Bold}, BoldItalicFont={* Demi Bold Italic}]
+  \setmonofont{Courier New}[Scale=0.9]
+\fi
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath,amssymb,amsfonts}
-\usepackage[utf8]{inputenc}
-\usepackage[T2A]{fontenc}
 \usepackage[russian]{babel}
-\usepackage[hidelinks]{hyperref}
-\usepackage{comfortaa}
+\usepackage[hidelinks,pdfversion=1.5]{hyperref}
+\ifPDFTeX
+  % Сборка pdfLaTeX (Windows-ПК): Avenir Next недоступен, запасной шрифт Comfortaa
+  \usepackage{comfortaa}
+\fi
 \renewcommand*\familydefault{\sfdefault}
 \usepackage[x11names]{xcolor}
+\definecolor{fg}{gray}{0.80}
 \usepackage{indentfirst}
+\emergencystretch=2em
+\usepackage{booktabs}
 \usepackage{array}
-\usepackage{colortbl}
 \usepackage{caption}
-\captionsetup{font={color=white},labelfont={color=white}}
+\captionsetup{font={color=fg},labelfont={color=fg}}
 
 \DeclareMathOperator{\Tr}{Tr}
 
@@ -30,19 +46,18 @@
 
 \makeatletter
 \renewcommand{\thefootnote}{\arabic{footnote}}
-\renewcommand{\@makefnmark}{\mbox{\textsuperscript{\textcolor{white}{\thefootnote}}}}
-\renewcommand{\@makefntext}[1]{\parindent 1.8em\noindent\textsuperscript{\textcolor{white}{\thefootnote}}\ \textcolor{white}{#1}}
-\renewcommand{\footnoterule}{\kern-3pt\color{white}\hrule width 0.4\textwidth height 0.4pt\kern 2.6pt}
+\renewcommand{\@makefnmark}{\mbox{\textsuperscript{\textcolor{fg}{\thefootnote}}}}
+\renewcommand{\@makefntext}[1]{\parindent 1.8em\noindent\textsuperscript{\textcolor{fg}{\thefootnote}}\ \textcolor{fg}{#1}}
+\renewcommand{\footnoterule}{\kern-3pt\color{fg}\hrule width 0.4\textwidth height 0.4pt\kern 2.6pt}
 \renewcommand{\ps@plain}{%
   \let\@oddhead\@empty
   \let\@evenhead\@empty
-  \def\@oddfoot{\hfill\textcolor{white}{\thepage}\hfill}%
+  \def\@oddfoot{\hfill\textcolor{fg}{\thepage}\hfill}%
   \let\@evenfoot\@oddfoot
 }
 \makeatother
 
 \pagestyle{plain}
-\arrayrulecolor{white}
 
 \title{\textbf{Пороговый коллапс из вычислительного предела}}
 \author{%
@@ -54,7 +69,7 @@
 \begin{document}
 
 \pagecolor{black}
-\color{white}
+\color{fg}
 
 \maketitle
 
@@ -62,7 +77,7 @@
 Предлагается модернизация квантовой механики посредством введения \CollapseRuleG{}: ветвь удаляется, если её нельзя отличить экспериментом от отсутствия. Объективизация наступает, когда остаточная когерентность падает ниже того же порога~$\varepsilon=1/\Ost$. Порог выводится из конечного числа бинарных различений внутри causal patch: $\Ost=3{,}5\times 10^{120}$. Масштаб равновероятного ветвления и предел RCS~--- около $400$ кубитов. Модель запрещает факторизацию RSA-2048. Неунитарность обрезки и выбора допускает несохранение энергии, а также сверхсветовую передачу информации. Предлагается экспериментальная проверка на одном 404-кубитном процессоре.
 \end{abstract}
 
-\noindent\textbf{Ключевые слова:} объективный~коллапс; объективизация; операционализм; удаление~ветвей; остаточная~когерентность; BDPT; einselection; предел~вычислений; алгоритм~Шора; сверхсветовой~телефон; CMB-фрейм
+\noindent\textbf{Ключевые слова:} объективный~коллапс; объективизация; операционализм; удаление~ветвей; остаточная~когерентность; einselection; предел~вычислений; алгоритм~Шора; сверхсветовой~телефон; CMB-фрейм
 
 \section{Введение}
 
@@ -449,13 +464,13 @@ P_X(A{=}1)=\tfrac12,
 \begin{center}
 \renewcommand{\arraystretch}{1.15}
 \begin{tabular}{@{}ccc@{}}
-\hline
+\toprule
 $N$ & $P_Z(A{=}1)$ & $P_X(A{=}1)$ \\
-\hline
+\midrule
 $400$ & $35{,}6\%$ & $50\%$ \\
 $401$ & $16{,}3\%$ & $50\%$ \\
 {\boldmath\bfseries $402$} & {\boldmath\bfseries $1{,}6\%$} & {\boldmath\bfseries $50\%$} \\
-\hline
+\bottomrule
 \end{tabular}
 \captionof{table}{Маргинальные вероятности кубита~$A$ при $Z$- и $X$-управлении; $N$~--- число анцилл.}
 \label{tab:marginal-scan}
@@ -546,6 +561,18 @@ P_X(A{=}1)=\tfrac12,
 \paragraph{Инженерия сверхсветового телефона.}
 \label{sec:discussion-signaling}
 Схема~\hyperref[sec:signaling]{\S~\ref*{sec:signaling}} задаёт предварительную архитектуру и рабочие оценки при прямом controlled-$U$. Узкое место инженерной реализации~--- не~$t_{\mathrm{run}}$ на чипе и не~$t_{\mathrm{coll}}$, а конвейер белловских пар: при~$M\approx7$ и~$t_{\mathrm{run}}\approx0{,}5$~мкс нужен темп~$R_{\mathrm{Bell}}\approx2\times10^6$~пар/с на направление, на порядки выше типичных линий квантовой связи. Возможная оптимизация~--- готовить $U|0\rangle$ offline на буферном регистре параллельно предыдущему акту, а в такте при~$C=1$ подставлять его controlled-SWAP (при~$C=0$ анциллы остаются в~$|0\rangle$). В стандартной квантовой механике это эквивалентно controlled-$U$ на уровне конечной глобальной~$\rho$; для нелинейного \CollapseRuleG{} эквивалентность требует отдельного предположения об отсутствии порогового события при подготовке и хранении заготовки. Если такая оптимизация допустима, длительность акта сокращается до $t_{\mathrm{run}}\approx50$~нс (загрузка заготовки и $Z$/$X$-управление на~$C$, без повторного прогона $d_{\mathrm{sat}}$ слоёв), битрейт вырастает до $\approx2{,}8$~Мбит/с, минимальная база~--- $\approx100$~м, но~$R_{\mathrm{Bell}}$ поднимается до~$\approx2\times10^7$~пар/с. В нелинейной модели конечное состояние само по себе может не определять результат: порог способен сработать уже во время offline-подготовки, поэтому эквивалентность заготовки и controlled-$U$ должна быть задана микродинамикой и проверена экспериментально. Открыты также ресурсы и длительность многокубитного controlled-SWAP, сброс буферов, генерация и доставка пар с темпом~$R_{\mathrm{Bell}}$, сохранение белловской пары и синхронизация считывания.
+
+\section*{Statements and Declarations}
+
+\noindent\textbf{Финансирование.} Работа выполнена без внешнего финансирования.
+
+\noindent\textbf{Конфликт интересов.} Конфликта интересов нет.
+
+\noindent\textbf{Вклад автора.} Единственный автор; гипотезы, аргументы и выводы принадлежат автору.
+
+\noindent\textbf{Доступность данных.} Новых данных в работе нет.
+
+\noindent\textbf{Использование генеративного ИИ.} Текст подготовлен с помощью модели генеративного ИИ Claude (Anthropic). Модель использовалась для написания и редактуры текста по тезисам и указаниям автора, для проверки выкладок и численных оценок, подбора и проверки литературы, а также для перевода статьи на английский язык. Автор проверил текст и отвечает за его содержание.
 
 \bibliographystyle{unsrt}
 \bibliography{refs}
