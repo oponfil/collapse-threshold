@@ -56,3 +56,7 @@ powershell -File build.ps1 -Targets collapse_threshold_en
 ## Author
 
 Oleg Ponfilenok — independent researcher
+
+## License
+
+The text of the manuscript is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
