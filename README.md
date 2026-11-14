@@ -11,7 +11,7 @@ The paper proposes a **Collapse Threshold Rule** for quantum mechanics. A branch
 - **Experiment:** local marginal test on one **404-qubit** processor (402 ancillas) — Z- vs X-control shifts P(A=1) to ≈ 1.6% while the X arm stays at 1/2.
 - **Superluminal telephone (§10):** after confirming the local test, the same **404-qubit** scheme on a separated base; **direct controlled-U** at **N = 402** ancillas (M ≈ 7 acts, dₛₐₜ ≈ 20 layers, tᵣᵤₙ ≈ 0.5 µs per act): **≈ 280 kbit/s** if Bell-pair supply keeps up (**R_Bell ≈ 2 × 10⁶** pairs/s per direction), minimum base **≈ 1.05 km**.
 - **Two-way communication:** symmetric **404-qubit** stations (402 ancillas each); each act consumes the Bell pair — **R_Bell ≈ 2 × 10⁶** pairs/s per active tick; **either transmit or receive** on one pair; alternating ticks on the CMB layer, not simultaneous.
-- **Engineering (§12):** Bell-pair throughput is the main bottleneck; offline U|0⟩ + controlled-SWAP could reach **≈ 2.8 Mbit/s** at **≈ 100 m** but needs **≈ 2 × 10⁷** pairs/s and may be blocked by the precomputation penalty (§8).
+- **Engineering (§12):** Bell-pair throughput is the main bottleneck; offline U|0⟩ + controlled-SWAP could reach **≈ 2.8 Mbit/s** at **≈ 100 m** but needs **≈ 2 × 10⁷** pairs/s and works only if the threshold does not fire while the prefabricated state is prepared and stored.
 - **CMB frame (§11):** collapse simultaneity on constant FRW time, practically the CMB rest frame; conversion of laboratory clocks to t_FRW for Earth/space stations.
 
 ## Structure

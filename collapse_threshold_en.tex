@@ -10,6 +10,8 @@
 \else
   % XeTeX/tectonic build: Latin Modern through fontspec
   \usepackage{fontspec}
+  % No object streams in the PDF, so that built-in viewers open internal links
+  \AtBeginDocument{\special{dvipdfmx:config C 0x0040}}
 \fi
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath,amssymb,amsfonts}

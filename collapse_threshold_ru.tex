@@ -10,6 +10,8 @@
 \else
   % Сборка XeTeX/tectonic: основной шрифт Avenir Next (системный шрифт macOS)
   \usepackage{fontspec}
+  % Без потоков объектов в PDF, чтобы встроенный просмотр открывал внутренние ссылки
+  \AtBeginDocument{\special{dvipdfmx:config C 0x0040}}
   \setmainfont{Avenir Next}[UprightFont={* Regular}, ItalicFont={* Italic}, BoldFont={* Demi Bold}, BoldItalicFont={* Demi Bold Italic}]
   \setsansfont{Avenir Next}[UprightFont={* Regular}, ItalicFont={* Italic}, BoldFont={* Demi Bold}, BoldItalicFont={* Demi Bold Italic}]
   \setmonofont{Courier New}[Scale=0.9]
