@@ -1,0 +1,25 @@
+\begin{tikzpicture}[font=\small,x=1cm,y=1cm]
+\node[figfg,anchor=west,align=left] at (0,2.75) {arm $\qC=0$:\\qubit $\qA$ in zero};
+\node[figfg,anchor=west,align=left] at (0,0.95) {arm $\qC=1$:\\qubit $\qA$ in one};
+\node[figfg,align=center,font=\small\bfseries] at (4.80,4.25) {$\qC$ has flipped\\half of the ancillas};
+\node[figfg,align=center,font=\small\bfseries] at (9.45,4.25) {after the scrambler $U$};
+\node[figfg] at (3.90,2.75) {$0$};\node[figfg] at (4.26,2.75) {$0$};\node[figfg] at (4.62,2.75) {$0$};\node[figfg] at (4.98,2.75) {$0$};\node[figfg] at (5.34,2.75) {$0$};\node[figfg] at (5.70,2.75) {$0$};
+\node[figfg] at (3.90,0.95) {$1$};\node[figfg] at (4.26,0.95) {$1$};\node[figfg] at (4.62,0.95) {$1$};\node[figfg] at (4.98,0.95) {$0$};\node[figfg] at (5.34,0.95) {$0$};\node[figfg] at (5.70,0.95) {$0$};
+\draw[figacc,thick,->] (6.15,2.75) -- (7.35,2.75);
+\node[figacc,above] at (6.75,2.75) {$U$};
+\draw[figacc,thick,->] (6.15,0.95) -- (7.35,0.95);
+\node[figacc,above] at (6.75,0.95) {$U$};
+\draw[figfg,rounded corners=2pt] (7.60,2.37) rectangle (11.30,3.13);
+\node[figfg] at (7.90,2.75) {$0$};\node[figfg] at (8.26,2.75) {$0$};\node[figfg] at (8.62,2.75) {$0$};\node[figfg] at (8.98,2.75) {$0$};\node[figfg] at (9.34,2.75) {$0$};\node[figfg] at (9.70,2.75) {$0$};
+\node[figfg] at (10.65,2.75) {$1/2$};
+\draw[figacc,thick,rounded corners=2pt] (7.60,0.10) rectangle (11.30,1.80);
+\node[figfg] at (7.90,1.47) {$1$};\node[figfg] at (8.26,1.47) {$0$};\node[figfg] at (8.62,1.47) {$1$};\node[figfg] at (8.98,1.47) {$1$};\node[figfg] at (9.34,1.47) {$0$};\node[figfg] at (9.70,1.47) {$0$};
+\node[figfg] at (10.65,1.47) {$<\varepsilon$};
+\node[figfg] at (7.90,1.12) {$0$};\node[figfg] at (8.26,1.12) {$1$};\node[figfg] at (8.62,1.12) {$1$};\node[figfg] at (8.98,1.12) {$0$};\node[figfg] at (9.34,1.12) {$0$};\node[figfg] at (9.70,1.12) {$1$};
+\node[figfg] at (10.65,1.12) {$<\varepsilon$};
+\node[figfg] at (7.90,0.77) {$1$};\node[figfg] at (8.26,0.77) {$1$};\node[figfg] at (8.62,0.77) {$0$};\node[figfg] at (8.98,0.77) {$0$};\node[figfg] at (9.34,0.77) {$1$};\node[figfg] at (9.70,0.77) {$0$};
+\node[figfg] at (10.65,0.77) {$<\varepsilon$};
+\node[figfg] at (8.80,0.37) {$\cdots$};\node[figfg] at (10.65,0.37) {$\cdots$};
+\node[figfg,anchor=west] at (11.50,2.75) {remains};
+\node[figacc,anchor=west] at (11.50,0.95) {vanishes};
+\end{tikzpicture}%
