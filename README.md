@@ -35,8 +35,8 @@ The paper proposes a **Threshold Rule** for quantum mechanics. The Born weight o
 | `collapse_threshold_ru.tex` | Russian article source |
 | `collapse_threshold_en.tex` | English article source |
 | `refs.bib` | Shared bibliography |
-| `collapse_threshold_ru.pdf` | Compiled Russian PDF (27 pages) |
-| `collapse_threshold_en.pdf` | Compiled English PDF (26 pages) |
+| `collapse_threshold_ru.pdf` | Compiled Russian PDF (30 pages) |
+| `collapse_threshold_en.pdf` | Compiled English PDF (28 pages) |
 | `build.ps1` | Windows build script (`pdflatex` + `bibtex`); both languages by default |
 
 ## Build
