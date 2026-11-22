@@ -11,7 +11,7 @@ The paper proposes a **Threshold Rule** for quantum mechanics. The Born weight o
 - **Experiment:** local marginal test on one processor, for which **410 qubits** are certainly sufficient — Z- vs X-control shifts P(A=1) to ≈ 1.6% at 402 ancillas while the X arm stays at 1/2. A scheme without conditional gates (an excitation-conserving scrambler after a conditional flip of half of 408 ancillas) and a control with a block scrambler, for which the model predicts no shift, are given in §9.
 - **Superluminal telephone (§8):** after confirming the local test, the same **404-qubit** scheme on a separated base; **direct controlled-U** at **N = 402** ancillas (M ≈ 7 acts, dₛₐₜ ≈ 20 layers, tᵣᵤₙ ~ 0.5 µs per act): of the order of **hundreds of kbit/s** if Bell-pair supply keeps up (**R_Bell ~ 10⁶** pairs/s per direction), minimum base of the order of **a kilometer**. These are order-of-magnitude estimates and an upper bound on the rate: they do not include the cost of conditional control.
 - **Two-way communication:** symmetric **404-qubit** stations (402 ancillas each); each act consumes the Bell pair — **R_Bell ~ 10⁶** pairs/s per active tick; **either transmit or receive** on one pair; alternating ticks on the CMB layer, not simultaneous.
-- **Engineering (§11):** Bell-pair throughput is the main bottleneck; offline U|0⟩ + controlled-SWAP could reach **a few Mbit/s** at about **a hundred meters** but needs **~ 10⁷** pairs/s and works only if the threshold does not fire while the prefabricated state is prepared and stored.
+- **Engineering (§8):** Bell-pair throughput is the main bottleneck: **R_Bell ~ 10⁶** pairs/s per direction is orders of magnitude above present quantum communication lines.
 - **CMB frame (§9):** collapse simultaneity on constant FRW time, practically the CMB rest frame; conversion of laboratory clocks to t_FRW for Earth/space stations.
 
 ## Structure
@@ -26,7 +26,7 @@ The paper proposes a **Threshold Rule** for quantum mechanics. The Born weight o
 | 8 | Superluminal telephone: direct controlled-U, bitrate/base, two-way communication |
 | 9 | CMB frame, preferred-layer test, clock conversion to t_FRW |
 | 10 | Predictions for quantum computers: Shor limit, other algorithms, search with verification |
-| 11 | Discussion and open questions (existing experiments, micro-model, branches, causality, offline optimization) |
+| 11 | Discussion and open questions (existing experiments, micro-model, branches, causality) |
 | A | Existing experiments in which the action of the rule is imperceptible |
 
 ## Files
