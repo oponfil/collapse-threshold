@@ -28,7 +28,7 @@ The main test is the **local marginal test** on one processor, for which **410 q
 | 8 | Superluminal telephone: direct controlled-U, rate and base, two-way communication |
 | 9 | CMB frame, preferred-layer test, clock conversion to t_FRW |
 | 10 | Predictions for quantum computers: Shor limit, other algorithms, search with verification |
-| 11 | Discussion and open questions: existing experiments, comparison with GRW/CSL, integer micromodel, the jump at the threshold, local Bekenstein bound, Palmer's invariant set, branches, CMB frame and causality |
+| 11 | Discussion and open questions: existing experiments, comparison with GRW/CSL, integer micromodel, the jump at the threshold, local Bekenstein bound, branches, CMB frame and causality |
 | A | Existing experiments in which the action of the rule is imperceptible |
 
 ## Preprint
@@ -43,8 +43,8 @@ The English version is published as a preprint on [Zenodo](https://doi.org/10.52
 | `collapse_threshold_en.tex` | English article source |
 | `refs.bib` | Shared bibliography |
 | `figures/` | TikZ sources of the six figures, one file per figure and language (`fig_<name>_ru.tex`, `fig_<name>_en.tex`) |
-| `collapse_threshold_ru.pdf` | Compiled Russian PDF (30 pages) |
-| `collapse_threshold_en.pdf` | Compiled English PDF (29 pages) |
+| `collapse_threshold_ru.pdf` | Compiled Russian PDF (31 pages) |
+| `collapse_threshold_en.pdf` | Compiled English PDF (30 pages) |
 | `build.ps1` | Windows build script (`pdflatex` + `bibtex`); both languages by default |
 
 ## Build
