@@ -43,8 +43,8 @@ The English version is published as a preprint on [Zenodo](https://doi.org/10.52
 | `collapse_threshold_en.tex` | English article source |
 | `refs.bib` | Shared bibliography |
 | `figures/` | TikZ sources of the six figures, one file per figure and language (`fig_<name>_ru.tex`, `fig_<name>_en.tex`) |
-| `collapse_threshold_ru.pdf` | Compiled Russian PDF (31 pages) |
-| `collapse_threshold_en.pdf` | Compiled English PDF (30 pages) |
+| `collapse_threshold_ru.pdf` | Compiled Russian PDF (32 pages) |
+| `collapse_threshold_en.pdf` | Compiled English PDF (31 pages) |
 | `build.ps1` | Windows build script (`pdflatex` + `bibtex`); both languages by default |
 
 ## Build
